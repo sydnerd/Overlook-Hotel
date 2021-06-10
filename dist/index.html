@@ -1,16 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>Overlook Hotel</title>
 </head>
-<body>
-  <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-  
-  <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
 
+<body>
+  <!-- login -->
+  <section class="login-page hidden" aria-hidden="false">
+    <div class="login-error-message">
+      <h2 class="login-error" id="loginErr">Invalid Credentials!</h2>
+    </div>
+    <form class="login-form">
+      <input type="text" name="username" id="username-input" class="login-form-input" placeholder="Username">
+      <input type="password" name="password" id="password-input" class="login-form-input" placeholder="Password">
+      <input type="submit" value="Login" id="login-form-submit">
+    </form>
+  </section>
+  <nav>
+    <section class="left-nav">
+      <div class="nav-icons">
+        <span class="material-icons home-icon">home</span>
+        <h1 class="drop-downs left-dropdown">DASHBOARD</h1>
+      </div>
+      <div class="nav-icons">
+        <span class="material-icons colored-icon star-icon" alt="star icon">upcoming</span>
+        <h1 class="drop-downs left-dropdown colored-word">UPCOMING STAYS</h1>
+      </div>
+      <div class="nav-icons">
+        <span class="material-icons colored-icon night-icon">nightlight_round</span>
+        <h1 class="drop-downs left-dropdown colored-word">PAST STAYS</h1>
+      </div>
+      <div class="nav-icons">
+        <span class="material-icons colored-icon bed-icon">king_bed</span>
+        <h1 class="drop-downs left-dropdown colored-word">BOOK ROOM</h1>
+      </div>
+    </section>
+    <section class="right-nav">
+      <div class="nav-icons username">
+        <span class="material-icons colored-word account-icon">account_circle</span>
+        <h1 class="drop-downs colored-icon">WELCOME: (Username)</h1>
+      </div>
+      <div class="nav-icons right-logo">
+        <h1 class="company-logo">THE OVERLOOK</h1>
+        <span class="material-icons hotel-logo">hotel</span>
+      </div>
+    </section>
+  </nav>
+  <main>
+    <h3>Total Damage: $</h3>
+    <section class="image-container">
+      <img class="hotel-image" src="../images/img1.jpg" alt="Poolsideview">
+      <img class="hotel-image" src="../images/img2.jpg" alt="Pool view">
+      <img class="hotel-image" src="../images/img3.jpg" alt="Hotel view">
+      <img class="hotel-image" src="../images/img4.jpg" alt="Room view">
+      <img class="hotel-image" src="../images/img5.jpg" alt="Room view">
+      <img class="hotel-image" src="../images/img6.jpg" alt="Room view">
+    </section>
+    <section class="upcoming-stays-section">
+    </section>
+    <section class="past-stays-section">
+    </section>
+    <section class="book-room-section">
+    </section>
+  </main>
+  <script src="bundle.js"></script>
 </body>
+
 </html>
