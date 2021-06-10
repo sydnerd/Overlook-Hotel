@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>Overlook Hotel</title>
 </head>
-<body>
-  <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-  
-  <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
 
+<body>
+  <!-- login -->
+  <section class="login-page" </section>
+    <div class="login-error-message">
+      <h2 class="login-error" id="loginErr">Invalid Credentials!</h2>
+    </div>
+    <form class= "login-form">
+      <input type="text" name="username" id="username-input" class="login-form-input" placeholder="Username">
+      <input type="password" name="password" id="password-input" class="login-form-field" placeholder="Password">
+
+  </section>
+  <nav>
+    <span class="material-icons">hotel</span>
+    <h1>The Overlook Hotel</h1>
+    <h2>Today's Date:</h2>
+    <h2>Welcome (customer name)</h2>
+  </nav>
+  <main>
+    <button class="dashboard">Home</button>
+    <button class="dashboard">Upcoming Stays</button>
+    <button class="dashboard">Past Stays</button>
+    <button class="dashboard">Book Room</button>
+  </main>
+  <script src="bundle.js"></script>
 </body>
+
 </html>
