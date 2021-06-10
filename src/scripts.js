@@ -8,5 +8,9 @@ import './css/base.scss';
 import './images/turing-logo.png'
 import './images/img1.jpg'
 import './images/img2.jpg'
+import './images/img3.jpg'
+import './images/img4.jpg'
+import './images/img5.jpg'
+import './images/img6.jpg'
 
 console.log('This is the JavaScript entry file - your code begins here.');
