@@ -12,20 +12,51 @@
 
 <body>
   <!-- login -->
-  <section class="login-page" </section>
+  <section class="login-page hidden" aria-hidden="false">
     <div class="login-error-message">
       <h2 class="login-error" id="loginErr">Invalid Credentials!</h2>
     </div>
-    <form class= "login-form">
+    <form class="login-form">
       <input type="text" name="username" id="username-input" class="login-form-input" placeholder="Username">
-      <input type="password" name="password" id="password-input" class="login-form-field" placeholder="Password">
-
+      <input type="password" name="password" id="password-input" class="login-form-input" placeholder="Password">
+      <input type="submit" value="Login" id="login-form-submit">
+    </form>
   </section>
-  <nav>
+  <!-- <nav>
     <span class="material-icons">hotel</span>
     <h1>The Overlook Hotel</h1>
     <h2>Today's Date:</h2>
     <h2>Welcome (customer name)</h2>
+  </nav> -->
+  <nav>
+    <section class="left-nav">
+      <div class="nav-icons">
+        <span class="material-icons home-icon">home</span>
+        <h1 class="drop-downs left-dropdown">DASHBOARD</h1>
+      </div>
+      <div class="nav-icons">
+        <span class="material-icons colored-icon star-icon" alt="star icon">upcoming</span>
+        <h1 class="drop-downs left-dropdown colored-word">UPCOMING STAYS</h1>
+      </div>
+      <div class="nav-icons">
+        <span class="material-icons colored-icon hourglass-icon">hourglass-empty</span>
+        <h1 class="drop-downs left-dropdown colored-word">PAST STAYS</h1>
+      </div>
+      <div class="nav-icons">
+        <span class="material-icons colored-icon bed-icon">king_bed</span>
+        <h1 class="drop-downs left-dropdown colored-word">BOOK ROOM</h1>
+      </div>
+    </section>
+    <section class="right-nav">
+      <div class="nav-icons username">
+        <span class="material-icons colored-word account-icon">account_circle</span>
+        <h1 class="drop-downs colored-icon">USER:</h1>
+      </div>
+      <div class="nav-icons right-logo">
+        <h1 class="company-logo">THE OVERLOOK HOTEL</h1>
+        <span class="material-icons">hotel</span>
+      </div>
+    </section>
   </nav>
   <main>
     <button class="dashboard">Home</button>
