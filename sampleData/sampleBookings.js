@@ -5,7 +5,7 @@ let sampleBookings = [
     roomNumber: 1
   },
   {
-    userID: 2,
+    userID: 1,
     date: "2020/12/17",
     roomNumber: 2
   },
