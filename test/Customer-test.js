@@ -21,4 +21,10 @@ describe("Customer", () => {
    expect(customer1).to.be.an.instanceof(Customer);
  });
 
+ it('should have an id', () => {
+   expect(customer1.id).to.eql(1);
+   expect(customer2.id).to.eql(2);
+   expect(customer1.id).to.not.equal(3);
+ });
+
 })
