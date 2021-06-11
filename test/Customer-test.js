@@ -44,5 +44,13 @@ describe.only("Customer", () => {
  it('should get all bookings for the customer, past, present, and upcoming', () => {
    customer1.getAllBookings(sampleBookings)
    expect(customer1.bookings).to.eql(totalBooking)
- })
+   expect(customer1.bookings.length).to.eql(2)
+   expect(customer1.bookings.length).to.not.equal(3)
+ });
+
+ it('should get total dollar amount for all bookings', () => {
+   customer1.getAllBookings(sampleBookings)
+   expect(customer1.getTotalCost(sampleRooms)).to.eql(835.78)
+ });
+
 })

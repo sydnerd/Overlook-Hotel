@@ -56,7 +56,8 @@ let sampleRooms = [
     "costPerNight":231.46
   },
   {
-    "number":8,"roomType":"junior suite",
+    "number":8,
+    "roomType":"junior suite",
     "bidet":false,
     "bedSize":"king",
     "numBeds":1,
