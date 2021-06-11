@@ -40,7 +40,7 @@ describe("Customer", () => {
    expect(customer1.name).to.not.equal('Nicole Zagorski');
  });
 
- it('should get all bookings for the customer, past present, and upcoming', () => {
+ it('should get all bookings for the customer, past, present, and upcoming', () => {
    expect(customer1.bookings).to.eql(totalBookings)
  })
 })

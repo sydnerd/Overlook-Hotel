@@ -1,6 +1,6 @@
 class Customer {
   constructor(customerData) {
-    this.id = customerData.id
+    this.id = customerData.id;
     this.name = customerData.name;
     this.bookings = [];
     this.totalCost = 0;
@@ -11,7 +11,7 @@ class Customer {
   }
 
   getTotalCost() {
-    
+
   }
 }
 
