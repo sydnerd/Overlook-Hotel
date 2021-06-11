@@ -27,4 +27,10 @@ describe("Customer", () => {
    expect(customer1.id).to.not.equal(3);
  });
 
+ it('should have a name', () => {
+   expect(customer1.name).to.eql('Sydney Bear');
+   expect(customer2.name).to.eql('Rebecca Phillips');
+   expect(customer1.name).to.not.equal('Nicole Zagorski');
+ });
+
 })
