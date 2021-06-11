@@ -5,6 +5,14 @@ class Customer {
     this.bookings = [];
     this.totalCost = 0;
   }
+
+  getAllbookings() {
+
+  }
+
+  getTotalCost() {
+    
+  }
 }
 
 export default Customer;
