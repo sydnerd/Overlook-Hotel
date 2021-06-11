@@ -1,4 +1,4 @@
-class User {
+class Customer {
   constructor(customerData) {
     this.id = customerData.id
     this.name = customerData.name;
@@ -7,4 +7,4 @@ class User {
   }
 }
 
-export default User;
+export default Customer;
