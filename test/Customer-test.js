@@ -8,7 +8,7 @@ import sampleRooms from '../sampleData/sampleRooms';
 import Customer from '../src/Customer';
 import Hotel from '../src/Hotel';
 
-describe.only("Customer", () => {
+describe("Customer", () => {
   let customer1, customer2, booking1, booking2, room1, room2, totalBooking
 
   beforeEach(() => {
