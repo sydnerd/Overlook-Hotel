@@ -16,6 +16,7 @@ import './images/img6.jpg'
 
 //Event Listeners
 window.addEventListener("load", getData)
+
 //WINDOW LOAD FUNCTION
 function getData() {
   fetchAllData()
