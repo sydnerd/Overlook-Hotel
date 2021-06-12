@@ -1,3 +1,4 @@
+
 import chai from 'chai';
 const expect = chai.expect;
 
@@ -8,7 +9,7 @@ import sampleRooms from '../sampleData/sampleRooms';
 import Hotel from '../src/Hotel';
 
 describe.only("Hotel", () => {
-  let hotel1, booking1, booking2, room1, room2, totalBooking, date
+  let hotel1, booking1, booking2, room1, room2, room3 , room4, room5, room6, room7, room8, totalBooking, date, type
 
   beforeEach(() => {
     hotel1 = new Hotel(sampleCustomers, sampleRooms, sampleBookings)
@@ -17,7 +18,14 @@ describe.only("Hotel", () => {
     totalBooking = [booking1, booking2]
     room1 = sampleRooms[0]
     room2 = sampleRooms[1]
+    room3 = sampleRooms[2]
+    room4 = sampleRooms[3]
+    room5 = sampleRooms[4]
+    room6 = sampleRooms[5]
+    room7 = sampleRooms[6]
+    room8 = sampleRooms[7]
     date = "2020/10/09"
+    type = "junior suite"
   });
 
 it('should be a function', () => {
@@ -50,7 +58,8 @@ it('should be a function', () => {
  });
 
  it('should find rooms that are available', () => {
+   hotel1.findBookedRoomNumber(date)
    hotel1.findAvailableRooms(date)
-   expect(hotel1.availableRooms).to.deep.equal([2,3,4,5,6,7,8])
+   expect(hotel1.availableRooms).to.deep.equal([room2, room3, room4, room5, room6, room7, room8])
  });
 })

@@ -18,14 +18,10 @@ class Hotel{
     return this.rooms.filter(room => {
       bookedRooms.forEach(roomNumber => {
         if(roomNumber !== room.number) {
-          this.availableRooms.push(room.number)
+          this.availableRooms.push(room)
         }
       })
     })
-  }
-
-  filterByRoomType() {
-
   }
 }
 
