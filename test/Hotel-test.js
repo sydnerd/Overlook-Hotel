@@ -49,8 +49,8 @@ it('should be a function', () => {
    expect(hotel1.findBookedRoomNumber(date)).to.deep.equal([1])
  });
 
- it('should get total dollar amount for all bookings', () => {
-   customer1.getAllBookings(sampleBookings)
-   expect(customer1.getTotalCost(sampleRooms)).to.eql(835.78)
+ it('should find rooms that are available', () => {
+   hotel1.findAvailableRooms(date)
+   expect(hotel1.availableRooms).to.deep.equal([2,3,4,5,6,7,8])
  });
 })
