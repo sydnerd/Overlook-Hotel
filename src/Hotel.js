@@ -8,13 +8,12 @@ class Hotel{
     this.availablelRooms = []
   }
 
-  determineBookedRooms(date) {
+  findBookedRooms(date) {
      const bookedRoom = this.bookings.filter(booking => date === booking.date)
      return bookedRoom.map(room => room.roomNumber)
-     this.available = false
   }
 
-  checkAvailability() {
+  findAvailableRooms() {
 
   }
 
