@@ -6,6 +6,7 @@ class Hotel{
     this.roomType = bookingData.roomType;
     this.available = true;
     this.availableRooms = []
+    this.availableRoomsByType = []
   }
 
   findBookedRoomNumber(date) {

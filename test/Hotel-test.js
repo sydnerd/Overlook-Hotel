@@ -62,4 +62,3 @@ it('should be a function', () => {
    hotel1.findAvailableRooms(date)
    expect(hotel1.availableRooms).to.deep.equal([room2, room3, room4, room5, room6, room7, room8])
  });
-})

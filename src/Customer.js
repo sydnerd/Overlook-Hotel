@@ -18,17 +18,8 @@ getTotalCost(roomData) {
     })
     return sum
   }, 0)
-  return totalCost;
+  return totalCost.toFixed(2)
 }
 }
-  // getTotalCost(roomsData) {
-  //   let totalSpent = 0
-  //     this.bookings.forEach(booking => {
-  //     let foundRoom = roomsData.find(room => room.number === booking.roomNumber);
-  //     totalSpent += foundRoom.costPerNight;
-  //   });
-  //   return totalSpent.toFixed(2);
-  // };
-// }
 
 export default Customer;
