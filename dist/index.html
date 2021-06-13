@@ -12,21 +12,29 @@
 
 <body>
   <!-- login -->
-  <section class="login-page hidden" aria-hidden="false">
+  <section class="login-page hidden" id="login" aria-hidden="false">
     <div class="login-error-message">
-      <h2 class="login-error" id="loginErr">Invalid Credentials!</h2>
+      <h2 class="login-error hidden" id="loginErr">Invalid Credentials!</h2>
     </div>
     <form class="login-form">
-      <input type="text" name="username" id="username-input" class="login-form-input" placeholder="Username">
-      <input type="password" name="password" id="password-input" class="login-form-input" placeholder="Password">
-      <input type="submit" value="Login" id="login-form-submit">
+      <div class="input-container">
+        <div class="input">
+          <input type="text" name="username" id="username-input" class="login-form-input" placeholder="Username">
+        </div>
+        <div class="input">
+          <input type="password" name="password" id="password-input" class="login-form-input" placeholder="Password">
+        </div>
+        <div class="input">
+          <input class= "login-form-submit" type="submit" value="Login" id="login-form-submit">
+        </div>
+    </div>
     </form>
   </section>
-  <nav>
+  <nav id="nav">
     <section class="left-nav">
       <div class="nav-icons">
         <span class="material-icons home-icon">home</span>
-        <h1 class="drop-downs left-dropdown">DASHBOARD</h1>
+        <h1 class="drop-downs left-dropdown" id="dashboard">DASHBOARD</h1>
       </div>
       <div class="nav-icons">
         <span class="material-icons colored-icon star-icon" alt="star icon">upcoming</span>
@@ -52,7 +60,7 @@
       </div>
     </section>
   </nav>
-  <main>
+  <main id="main">
     <div class="total-cost-container">
       <h3 class="total-cost">Total Damage:</h3>
       <h3 id="totalCost"></h3>
@@ -75,7 +83,7 @@
         <input class="book-room-titles calendar" type="date" id="start" name="booking" value="2020-01-01" min="2020-01-01" max="2022-12-31">
       </div>
       <div>
-        <form class="room-type-form" id="roomTypeForm">
+        <form class="room-type-form hidden" id="roomTypeForm">
           <label class="book-room-titles" for="rooms">Select a room:</label>
           <select class="book-room-titles select-room" name="room-choice" id="roomChoice">
             <option class="book-room-titles" value="All Rooms">All Rooms</option>
