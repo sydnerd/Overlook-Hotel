@@ -54,5 +54,6 @@ function fillRooms(roomData) {
 }
 
 function displayBookRoomSection() {
-  imageContainer.classList.add("hidden")
+  imageContainer.classList.add('hidden')
+  bookRoomSection.classList.remove('hidden')
 }

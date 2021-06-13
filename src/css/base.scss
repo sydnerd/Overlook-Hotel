@@ -135,6 +135,29 @@ h3 {
   display: block;
 }
 
+.book-room-section {
+  background-color: #BCBCBC;
+  display: flex;
+  justify-content: space-around;
+  height: 250px;
+  padding: 15px;
+  width: 550px;
+}
+
+.book-room-titles {
+  color: #4D4D4D;
+  font-size: 1.5em;
+}
+
+.submit-btn,
+.select-room,
+.calendar:hover{
+  cursor: pointer;
+}
+
+.total-cost {
+  font-size: 1.5em;
+}
 
 /* SMALL TABLET STYLING */
 @media screen and (min-width: 620px) {

@@ -54,7 +54,7 @@
   </nav>
   <main>
     <div class="total-cost-container">
-      <h3>Total Damage:</h3>
+      <h3 class="total-cost">Total Damage:</h3>
       <h3 id="totalCost"></h3>
     </div>
     <section class="image-container" id="imageContainer">
@@ -69,21 +69,25 @@
     </section>
     <section class="past-stays-section">
     </section>
-    <section class="book-room-section" id="bookRoomSection">
-      <label for="start">Book room:</label>
-      <input type="date" id="start" name="booking" value="2020-01-01" min="2020-01-01" max="2022-12-31">
-      <form class="room-type-form" id="roomTypeForm">
-        <label for="rooms">Select a room:</label>
-        <select name="room-choice" id="roomChoice">
-          <option value="All Rooms">All Rooms</option>
-          <option value="Single Room">Single Room</option>
-          <option value="Junior Suite">Junior Suite</option>
-          <option value="Suite">Suite</option>
-          <option value="Residential Suite">Residential Suite</option>
-        </select>
-        <br><br>
-        <input type="submit" value="Submit">
-      </form>
+    <section class="book-room-section hidden" id="bookRoomSection">
+      <div>
+        <label class="book-room-titles" for="start">Book room:</label>
+        <input class="book-room-titles calendar" type="date" id="start" name="booking" value="2020-01-01" min="2020-01-01" max="2022-12-31">
+      </div>
+      <div>
+        <form class="room-type-form" id="roomTypeForm">
+          <label class="book-room-titles" for="rooms">Select a room:</label>
+          <select class="book-room-titles select-room" name="room-choice" id="roomChoice">
+            <option class="book-room-titles" value="All Rooms">All Rooms</option>
+            <option class="book-room-titles" value="Single Room">Single Room</option>
+            <option class="book-room-titles" value="Junior Suite">Junior Suite</option>
+            <option class="book-room-titles" value="Suite">Suite</option>
+            <option class="book-room-titles" value="Residential Suite">Residential Suite</option>
+          </select>
+          <br><br>
+          <input class="book-room-titles submit-btn" type="submit" value="Submit">
+        </form>
+      </div>
     </section>
   </main>
   <script src="bundle.js"></script>
