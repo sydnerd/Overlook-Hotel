@@ -3,7 +3,9 @@
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-import { fetchAllData } from './apiCalls';
+import {
+  fetchAllData
+} from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/img1.jpg'
 import './images/img2.jpg'
@@ -50,7 +52,7 @@ function loadData() {
       fillBookings(data[2])
       fillRooms(data[1])
     })
-    showLogin()
+  showLogin()
 }
 
 //Functions
@@ -100,10 +102,8 @@ function updateUserWelcome() {
 function validateLogin(event) {
   event.preventDefault()
   let loginInfo = usernameInput.value.split('r');
-  console.log(loginInfo)
-if (loginInfo[0] === 'custome' && parseInt(loginInfo[1]) > 0 && parseInt(loginInfo[1]) < 51 && passwordInput.value === 'overlook2021') {
+  if (parseInt(loginInfo[1]) > 0 && parseInt(loginInfo[1]) < 51 && passwordInput.value === 'overlook2021') {
     loadMain()
-    console.log(loginInfo)
   } else {
     loginError.classList.remove('hidden')
     clearForm(usernameInput, passwordInput);
