@@ -38,9 +38,7 @@
       </div>
       <div class="nav-icons">
         <span class="material-icons colored-icon bed-icon">king_bed</span>
-        <h1 class="drop-downs left-dropdown colored-word">BOOK ROOM</h1>
-        <!-- <label for="start">Book room:</label>
-        <input type="date" id="start" name="booking" value="2020-01-01" min="2020-01-01" max="2022-12-31"> -->
+        <h1 class="drop-downs left-dropdown colored-word" id="bookRoom">BOOK ROOM</h1>
       </div>
     </section>
     <section class="right-nav">
@@ -59,7 +57,7 @@
       <h3>Total Damage:</h3>
       <h3 id="totalCost"></h3>
     </div>
-    <section class="image-container">
+    <section class="image-container" id="imageContainer">
       <img class="hotel-image" src="../images/img1.jpg" alt="Poolsideview">
       <img class="hotel-image" src="../images/img2.jpg" alt="Pool view">
       <img class="hotel-image" src="../images/img3.jpg" alt="Hotel view">
@@ -71,7 +69,21 @@
     </section>
     <section class="past-stays-section">
     </section>
-    <section class="book-room-section">
+    <section class="book-room-section" id="bookRoomSection">
+      <label for="start">Book room:</label>
+      <input type="date" id="start" name="booking" value="2020-01-01" min="2020-01-01" max="2022-12-31">
+      <form class="room-type-form" id="roomTypeForm">
+        <label for="rooms">Select a room:</label>
+        <select name="room-choice" id="roomChoice">
+          <option value="All Rooms">All Rooms</option>
+          <option value="Single Room">Single Room</option>
+          <option value="Junior Suite">Junior Suite</option>
+          <option value="Suite">Suite</option>
+          <option value="Residential Suite">Residential Suite</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Submit">
+      </form>
     </section>
   </main>
   <script src="bundle.js"></script>

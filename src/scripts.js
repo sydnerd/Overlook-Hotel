@@ -21,10 +21,13 @@ let bookings = [];
 let rooms = [];
 
 //Query Selectors
-const totalCost = document.getElementById('totalCost')
-
+const totalCost = document.getElementById('totalCost');
+const bookRoomButton = document.getElementById('bookRoom')
+const bookRoomSection = document.getElementById('bookRoomSection')
+const imageContainer = document.getElementById('imageContainer')
 //Event Listeners
 window.addEventListener('load', loadData)
+bookRoomButton.addEventListener('click', displayBookRoomSection)
 
 //WINDOW LOAD FUNCTION
 function loadData() {
@@ -49,6 +52,7 @@ function fillBookings(bookingsData) {
 function fillRooms(roomData) {
   roomData.rooms.forEach(room => rooms.push(room))
 }
-// const displayCost = () => {
-//   totalCost.innerText = ""
-// }
+
+function displayBookRoomSection() {
+  imageContainer.classList.add("hidden")
+}
