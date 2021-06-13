@@ -3,7 +3,9 @@
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-import { fetchAllData } from './apiCalls';
+import {
+  fetchAllData
+} from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/img1.jpg'
 import './images/img2.jpg'
@@ -19,6 +21,7 @@ import Hotel from './Hotel'
 let customers = [];
 let bookings = [];
 let rooms = [];
+let currentCustomer;
 
 //Query Selectors
 const totalCost = document.getElementById('totalCost');
@@ -28,12 +31,20 @@ const imageContainer = document.getElementById('imageContainer');
 const dashboard = document.getElementById('dashboard');
 const main = document.getElementById('main');
 const nav = document.getElementById('nav');
-const login = document.getElementById('login')
+const login = document.getElementById('login');
+const loginError = document.getElementById('loginErr');
+const passwordInput = document.getElementById('passwordInput');
+const usernameInput = document.getElementById('usernameInput');
+const loginSubmit = document.getElementById('loginFormSubmit');
+const welcomeText = document.getElementById('welcomeText');
 
 //Event Listeners
 window.addEventListener('load', loadData)
 bookRoomButton.addEventListener('click', displayBookRoomSection)
 dashboard.addEventListener('click', displayHome)
+loginFormSubmit.addEventListener('click', (event) => {
+  validateUser(event)
+})
 
 //WINDOW LOAD FUNCTION
 function loadData() {
@@ -43,7 +54,7 @@ function loadData() {
       fillBookings(data[2])
       fillRooms(data[1])
     })
-    showLogin()
+  showLogin()
 }
 
 //Functions
@@ -52,7 +63,6 @@ function fillCustomers(customerData) {
 }
 
 function fillBookings(bookingsData) {
-  console.log(bookingsData)
   bookingsData.bookings.forEach(booking => bookings.push(booking))
 }
 
@@ -74,4 +84,47 @@ function showLogin() {
   nav.classList.add('hidden')
   main.classList.add('hidden')
   login.classList.remove('hidden')
+}
+
+function loadMain() {
+  login.classList.add('hidden')
+  main.classList.remove('hidden')
+  nav.classList.remove('hidden')
+  findCurrentCustomer()
+}
+
+function findCurrentCustomer() {
+  let loginInfo = usernameInput.value.split('r');
+  return customers.find(customer => {
+    if(customer.id === parseInt(loginInfo[1])){
+      currentCustomer = new Customer(customers[parseInt(loginInfo[1])-1])
+      updateUserWelcome()
+      displayTotalCost()
+    }
+  })
+}
+
+function updateUserWelcome() {
+  welcomeText.innerText = `WELCOME: ${currentCustomer.name}`
+}
+
+function validateUser(event) {
+  event.preventDefault()
+  let loginInfo = usernameInput.value.split('r');
+  if (parseInt(loginInfo[1]) > 0 && parseInt(loginInfo[1]) < 51 && passwordInput.value === 'overlook2021') {
+    loadMain()
+  } else {
+    loginError.classList.remove('hidden')
+    clearForm(usernameInput, passwordInput);
+  }
+}
+
+function clearForm(usernameInput, passwordInput) {
+  usernameInput.value = '';
+  passwordInput.value = '';
+}
+
+function displayTotalCost() {
+  currentCustomer.getAllBookings(bookings)
+  totalCost.innerText = `$ ${currentCustomer.getTotalCost(rooms)}`
 }
