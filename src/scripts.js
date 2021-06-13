@@ -128,6 +128,7 @@ function clearForm(usernameInput, passwordInput) {
 }
 
 function displayTotalCost() {
-  totalCost.innerText = currentCustomer.getTotalCost(rooms)
+  currentCustomer.getAllBookings(bookings)
+  totalCost.innerText = `$ ${currentCustomer.getTotalCost(rooms)}`
   console.log("rooms", rooms)
 }
