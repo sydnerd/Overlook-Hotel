@@ -22,12 +22,18 @@ let rooms = [];
 
 //Query Selectors
 const totalCost = document.getElementById('totalCost');
-const bookRoomButton = document.getElementById('bookRoom')
-const bookRoomSection = document.getElementById('bookRoomSection')
-const imageContainer = document.getElementById('imageContainer')
+const bookRoomButton = document.getElementById('bookRoom');
+const bookRoomSection = document.getElementById('bookRoomSection');
+const imageContainer = document.getElementById('imageContainer');
+const dashboard = document.getElementById('dashboard');
+const main = document.getElementById('main');
+const nav = document.getElementById('nav');
+const login = document.getElementById('login')
+
 //Event Listeners
 window.addEventListener('load', loadData)
 bookRoomButton.addEventListener('click', displayBookRoomSection)
+dashboard.addEventListener('click', displayHome)
 
 //WINDOW LOAD FUNCTION
 function loadData() {
@@ -37,6 +43,7 @@ function loadData() {
       fillBookings(data[2])
       fillRooms(data[1])
     })
+    showLogin()
 }
 
 //Functions
@@ -56,4 +63,15 @@ function fillRooms(roomData) {
 function displayBookRoomSection() {
   imageContainer.classList.add('hidden')
   bookRoomSection.classList.remove('hidden')
+}
+
+function displayHome() {
+  imageContainer.classList.remove('hidden')
+  bookRoomSection.classList.add('hidden')
+}
+
+function showLogin() {
+  nav.classList.add('hidden')
+  main.classList.add('hidden')
+  login.classList.remove('hidden')
 }
