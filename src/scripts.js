@@ -21,6 +21,7 @@ import Hotel from './Hotel'
 let customers = [];
 let bookings = [];
 let rooms = [];
+let currentCustomer;
 
 //Query Selectors
 const totalCost = document.getElementById('totalCost');
@@ -34,14 +35,15 @@ const login = document.getElementById('login');
 const loginError = document.getElementById('loginErr');
 const passwordInput = document.getElementById('passwordInput');
 const usernameInput = document.getElementById('usernameInput');
-const loginSubmit = document.getElementById('loginFormSubmit')
+const loginSubmit = document.getElementById('loginFormSubmit');
+const welcomeText = document.getElementById('welcomeText');
 
 //Event Listeners
 window.addEventListener('load', loadData)
 bookRoomButton.addEventListener('click', displayBookRoomSection)
 dashboard.addEventListener('click', displayHome)
 loginFormSubmit.addEventListener('click', (event) => {
-  validateLogin(event)
+  validateUser(event)
 })
 
 //WINDOW LOAD FUNCTION
@@ -61,7 +63,6 @@ function fillCustomers(customerData) {
 }
 
 function fillBookings(bookingsData) {
-  console.log(bookingsData)
   bookingsData.bookings.forEach(booking => bookings.push(booking))
 }
 
@@ -89,17 +90,28 @@ function loadMain() {
   login.classList.add('hidden')
   main.classList.remove('hidden')
   nav.classList.remove('hidden')
+  findCurrentCustomer()
 }
 
 function findCurrentCustomer() {
+  let loginInfo = usernameInput.value.split('r');
+  return customers.find(customer => {
+    if(customer.id === parseInt(loginInfo[1])){
+      console.log("hello", parseInt(loginInfo[1]))
+      currentCustomer = new Customer(customers[parseInt(loginInfo[1])-1])
+      console.log(currentCustomer)
+      updateUserWelcome()
+      displayTotalCost()
+    }
 
+  })
 }
 
 function updateUserWelcome() {
-
+  welcomeText.innerText = `WELCOME: ${currentCustomer.name}`
 }
 
-function validateLogin(event) {
+function validateUser(event) {
   event.preventDefault()
   let loginInfo = usernameInput.value.split('r');
   if (parseInt(loginInfo[1]) > 0 && parseInt(loginInfo[1]) < 51 && passwordInput.value === 'overlook2021') {
@@ -113,4 +125,9 @@ function validateLogin(event) {
 function clearForm(usernameInput, passwordInput) {
   usernameInput.value = '';
   passwordInput.value = '';
+}
+
+function displayTotalCost() {
+  totalCost.innerText = currentCustomer.getTotalCost(rooms)
+  console.log("rooms", rooms)
 }
