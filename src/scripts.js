@@ -97,13 +97,10 @@ function findCurrentCustomer() {
   let loginInfo = usernameInput.value.split('r');
   return customers.find(customer => {
     if(customer.id === parseInt(loginInfo[1])){
-      console.log("hello", parseInt(loginInfo[1]))
       currentCustomer = new Customer(customers[parseInt(loginInfo[1])-1])
-      console.log(currentCustomer)
       updateUserWelcome()
       displayTotalCost()
     }
-
   })
 }
 
@@ -130,5 +127,4 @@ function clearForm(usernameInput, passwordInput) {
 function displayTotalCost() {
   currentCustomer.getAllBookings(bookings)
   totalCost.innerText = `$ ${currentCustomer.getTotalCost(rooms)}`
-  console.log("rooms", rooms)
 }
