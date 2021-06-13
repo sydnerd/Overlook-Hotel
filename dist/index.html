@@ -13,20 +13,19 @@
 <body>
   <!-- login -->
   <section class="login-page hidden" id="login" aria-hidden="false">
-    <div class="login-error-message">
-      <h2 class="login-error hidden" id="loginErr">Invalid Credentials!</h2>
-    </div>
     <form class="login-form">
       <div class="input-container">
+        <h1 class="login-title">THE OVERLOOK HOTEL</h1>
         <div class="input">
-          <input type="text" name="username" id="username-input" class="login-form-input" placeholder="Username">
+          <input type="text" name="username" id="usernameInput" class="login-form-input" placeholder="Username" required="required">
         </div>
         <div class="input">
-          <input type="password" name="password" id="password-input" class="login-form-input" placeholder="Password">
+          <input type="password" name="password" id="passwordInput" class="login-form-input" placeholder="Password" required="required">
         </div>
         <div class="input">
-          <input class= "login-form-submit" type="submit" value="Login" id="login-form-submit">
+          <input class= "login-form-submit" type="submit" value="Login" id="loginFormSubmit">
         </div>
+        <h2 class="login-error hidden" id="loginErr">Invalid Credentials!</h2>
     </div>
     </form>
   </section>

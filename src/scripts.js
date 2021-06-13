@@ -28,12 +28,19 @@ const imageContainer = document.getElementById('imageContainer');
 const dashboard = document.getElementById('dashboard');
 const main = document.getElementById('main');
 const nav = document.getElementById('nav');
-const login = document.getElementById('login')
+const login = document.getElementById('login');
+const loginError = document.getElementById('loginErr');
+const passwordInput = document.getElementById('passwordInput');
+const usernameInput = document.getElementById('usernameInput');
+const loginSubmit = document.getElementById('loginFormSubmit')
 
 //Event Listeners
 window.addEventListener('load', loadData)
 bookRoomButton.addEventListener('click', displayBookRoomSection)
 dashboard.addEventListener('click', displayHome)
+loginFormSubmit.addEventListener('click', (event) => {
+  validateLogin(event)
+})
 
 //WINDOW LOAD FUNCTION
 function loadData() {
@@ -74,4 +81,36 @@ function showLogin() {
   nav.classList.add('hidden')
   main.classList.add('hidden')
   login.classList.remove('hidden')
+}
+
+function loadMain() {
+  login.classList.add('hidden')
+  main.classList.remove('hidden')
+  nav.classList.remove('hidden')
+}
+
+function findCurrentCustomer() {
+
+}
+
+function updateUserWelcome() {
+
+}
+
+function validateLogin(event) {
+  event.preventDefault()
+  let loginInfo = usernameInput.value.split('r');
+  console.log(loginInfo)
+if (loginInfo[0] === 'custome' && parseInt(loginInfo[1]) > 0 && parseInt(loginInfo[1]) < 51 && passwordInput.value === 'overlook2021') {
+    loadMain()
+    console.log(loginInfo)
+  } else {
+    loginError.classList.remove('hidden')
+    clearForm(usernameInput, passwordInput);
+  }
+}
+
+function clearForm(usernameInput, passwordInput) {
+  usernameInput.value = '';
+  passwordInput.value = '';
 }
