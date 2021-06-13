@@ -42,9 +42,10 @@ nav {
   font-size: 2em;
 }
 
-.left-dropdown {
+.left-dropdown:hover {
   font-size: .5em;
   margin-bottom: .5em;
+  cursor: pointer;
 }
 
 .drop-downs {
@@ -106,6 +107,10 @@ h3 {
   color: #4D4D4D;
   font-size: 1em;
   padding: 5px;
+}
+
+.total-cost-container {
+  display:flex;
 }
 
 

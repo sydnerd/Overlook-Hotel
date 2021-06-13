@@ -3,7 +3,7 @@
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-import {fetchAllData} from './apiCalls';
+import { fetchAllData } from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/img1.jpg'
 import './images/img2.jpg'
@@ -11,14 +11,44 @@ import './images/img3.jpg'
 import './images/img4.jpg'
 import './images/img5.jpg'
 import './images/img6.jpg'
+import domUpdates from './dom-updates'
+import Customer from './Customer'
+import Hotel from './Hotel'
 
-//Variables
+//Global Variables
+let customers = [];
+let bookings = [];
+let rooms = [];
+
+//Query Selectors
+const totalCost = document.getElementById('totalCost')
 
 //Event Listeners
-window.addEventListener("load", getData)
+window.addEventListener('load', loadData)
 
 //WINDOW LOAD FUNCTION
-function getData() {
+function loadData() {
   fetchAllData()
-    .then(data => console.log(data))
+    .then(function(data) {
+      fillCustomers(data[0])
+      fillBookings(data[2])
+      fillRooms(data[1])
+    })
 }
+
+//Functions
+function fillCustomers(customerData) {
+  customerData.customers.forEach(customer => customers.push(customer))
+}
+
+function fillBookings(bookingsData) {
+  console.log(bookingsData)
+  bookingsData.bookings.forEach(booking => bookings.push(booking))
+}
+
+function fillRooms(roomData) {
+  roomData.rooms.forEach(room => rooms.push(room))
+}
+// const displayCost = () => {
+//   totalCost.innerText = ""
+// }
