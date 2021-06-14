@@ -170,24 +170,20 @@ function checkRoomsAvailable() {
   let hotel = new Hotel(customers, rooms, bookings)
   const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
   const availableRooms = hotel.findAvailableRooms(dateSelected)
-  console.log("available rooms", hotel.availableRooms.length)
+  console.log("available rooms", hotel.availableRooms)
   if (hotel.availableRooms.length === 0) {
     bookingError.classList.remove('hidden')
   } else {
-    displayRoomsAvailable(availableRooms)
-  }
-}
-
-function displayRoomsAvailable(availableRooms) {
-  availableRooms.map(room => {
+    hotel.availableRooms.map(room => {
       availableRoomCards.innerHTML += `
         <article class="available-room-card">
-        <p>Room number: ${booking.date}</p>
-        <p>Room type: ${booking.roomNumber}</p>
-        <p>Bidet: ${booking.roomNumber}</p>
-        <p>Bed size: ${booking.roomNumber}</p>
-        <p>Number of beds: ${booking.roomNumber}</p>
-        <p>Cost per night: ${booking.roomNumber}</p>
+        <button>Book now</button>
+        <p>Room number: ${hotel.availableRooms.number}</p>
+        <p>Room type: ${hotel.availableRooms.roomType}</p>
+        <p>Bidet: ${hotel.availableRooms.bidet}</p>
+        <p>Bed size: ${hotel.availableRooms.bedSize}</p>
+        <p>Number of beds: ${hotel.availableRooms.numBeds}</p>
+        <p>Cost per night: ${hotel.availableRooms.costPerNight}</p>
         <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
         </article>
       `
@@ -195,3 +191,25 @@ function displayRoomsAvailable(availableRooms) {
     selectRoomType.classList.remove('hidden')
     calendarSection.classList.add('hidden')
   }
+}
+
+// function displayRoomsAvailable(availableRooms) {
+//   console.log("hotel available rooms", hotel.availableRooms)
+//     availableRooms.map(room => {
+//       availableRoomCards.innerHTML += `
+//         <article class="available-room-card">
+//         <button>Book now</button>
+//         <p>Room number: ${hotel.availableRooms.number}</p>
+//         <p>Room type: ${hotel.availableRooms.roomType}</p>
+//         <p>Bidet: ${hotel.availableRooms.bidet}</p>
+//         <p>Bed size: ${hotel.availableRooms.bedSize}</p>
+//         <p>Number of beds: ${hotel.availableRooms.numBeds}</p>
+//         <p>Cost per night: ${hotel.availableRooms.costPerNight}</p>
+//         <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+//         </article>
+//       `
+//     })
+  //   selectRoomType.classList.remove('hidden')
+  //   calendarSection.classList.add('hidden')
+  //   console.log("are you working?")
+  // }
