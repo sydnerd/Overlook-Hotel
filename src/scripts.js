@@ -6,6 +6,7 @@ import './css/base.scss';
 import {
   fetchAllData
 } from './apiCalls';
+import dayjs from 'dayjs';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/img1.jpg'
 import './images/img2.jpg'
@@ -13,6 +14,7 @@ import './images/img3.jpg'
 import './images/img4.jpg'
 import './images/img5.jpg'
 import './images/img6.jpg'
+import './images/img7.jpg'
 import domUpdates from './dom-updates'
 import Customer from './Customer'
 import Hotel from './Hotel'
@@ -37,7 +39,8 @@ const passwordInput = document.getElementById('passwordInput');
 const usernameInput = document.getElementById('usernameInput');
 const loginSubmit = document.getElementById('loginFormSubmit');
 const welcomeText = document.getElementById('welcomeText');
-
+const pastStays = document.getElementById('pastStays')
+const pastStaysSection =document.getElementById('pastStaysSection')
 //Event Listeners
 window.addEventListener('load', loadData)
 bookRoomButton.addEventListener('click', displayBookRoomSection)
@@ -45,6 +48,7 @@ dashboard.addEventListener('click', displayHome)
 loginFormSubmit.addEventListener('click', (event) => {
   validateUser(event)
 })
+pastStays.addEventListener('click', displayPastBookings)
 
 //WINDOW LOAD FUNCTION
 function loadData() {
@@ -73,6 +77,7 @@ function fillRooms(roomData) {
 function displayBookRoomSection() {
   imageContainer.classList.add('hidden')
   bookRoomSection.classList.remove('hidden')
+  pastStaysSection.classList.add('hidden')
 }
 
 function displayHome() {
@@ -127,4 +132,20 @@ function clearForm(usernameInput, passwordInput) {
 function displayTotalCost() {
   currentCustomer.getAllBookings(bookings)
   totalCost.innerText = `$ ${currentCustomer.getTotalCost(rooms)}`
+  console.log(currentCustomer.bookings)
+}
+
+function displayPastBookings(bookings, rooms) {
+  currentCustomer.bookings.map(booking => {
+        pastStaysSection.innerHTML += `
+          <article class="past-stays-card">
+          <h4>Date: ${booking.date}</h4>
+          <p>Room number: ${booking.roomNumber}</p>
+          <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+          </article>
+        `
+    })
+  imageContainer.classList.add('hidden')
+  bookRoomSection.classList.add('hidden')
+  console.log("current customer",currentCustomer)
 }

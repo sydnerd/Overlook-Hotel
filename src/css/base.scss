@@ -197,6 +197,20 @@ h3 {
   font-size: 1.5em;
 }
 
+.past-stays-card {
+  background-color: #4D4D4D;
+  margin-bottom: 10px;
+  width:200px;
+  height: 100%;
+  margin-right: 10px;
+}
+
+.past-stays-section {
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 /* SMALL TABLET STYLING */
 @media screen and (min-width: 620px) {
   .home-icon,
