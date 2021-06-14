@@ -23,10 +23,10 @@
           <input type="password" name="password" id="passwordInput" class="login-form-input" placeholder="Password" required="required">
         </div>
         <div class="input">
-          <input class= "login-form-submit" type="submit" value="Login" id="loginFormSubmit">
+          <input class="login-form-submit" type="submit" value="Login" id="loginFormSubmit">
         </div>
         <h2 class="login-error hidden" id="loginErr">Invalid Credentials!</h2>
-    </div>
+      </div>
     </form>
   </section>
   <nav id="nav">
@@ -41,7 +41,7 @@
       </div>
       <div class="nav-icons">
         <span class="material-icons colored-icon night-icon">nightlight_round</span>
-        <h1 class="drop-downs left-dropdown colored-word">PAST STAYS</h1>
+        <h1 class="drop-downs left-dropdown colored-word" id="pastStays">PAST STAYS</h1>
       </div>
       <div class="nav-icons">
         <span class="material-icons colored-icon bed-icon">king_bed</span>
@@ -51,7 +51,7 @@
     <section class="right-nav">
       <div class="nav-icons username">
         <span class="material-icons colored-word account-icon">account_circle</span>
-        <h1 class="drop-downs colored-icon" id= "welcomeText"></h1>
+        <h1 class="drop-downs colored-icon" id="welcomeText"></h1>
       </div>
       <div class="nav-icons right-logo">
         <h1 class="company-logo">THE OVERLOOK</h1>
@@ -74,15 +74,15 @@
     </section>
     <section class="upcoming-stays-section">
     </section>
-    <section class="past-stays-section">
+    <section class="past-stays-section" id="pastStaysSection">
     </section>
     <section class="book-room-section hidden" id="bookRoomSection">
       <div>
         <label class="book-room-titles" for="start">Book room:</label>
-        <input class="book-room-titles calendar" type="date" id="start" name="booking" value="2020-01-01" min="2020-01-01" max="2022-12-31">
+        <input class="book-room-titles calendar" type="date" id="calendar" name="booking" value="" min="">
       </div>
       <div>
-        <form class="room-type-form hidden" id="roomTypeForm">
+        <form class="room-type-form" id="roomTypeForm">
           <label class="book-room-titles" for="rooms">Select a room:</label>
           <select class="book-room-titles select-room" name="room-choice" id="roomChoice">
             <option class="book-room-titles" value="All Rooms">All Rooms</option>
@@ -96,6 +96,9 @@
         </form>
       </div>
     </section>
+    <div>
+      <p class="booking-error" id="bookingError">We are very sorry to inform you that there are no rooms available. Please update your selection.</p>
+    </div>
   </main>
   <script src="bundle.js"></script>
 </body>

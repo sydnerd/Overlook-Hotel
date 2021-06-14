@@ -24,6 +24,10 @@ class Hotel{
       })
     })
   }
+
+  // filterRoomsByDateAndType(date, roomType) {
+  //
+  // }
 }
 
 export default Hotel;
