@@ -47,7 +47,7 @@ const bookingError = document.getElementById('bookingError');
 const checkAvailabilityButton = document.getElementById('checkAvailabilityButton');
 const availableRoomCards = document.getElementById('availableRoomCards');
 const selectRoomType = document.getElementById('roomTypeForm');
-const calendarSection = document.getElementById('calendarSection')
+const calendarSection = document.getElementById('calendarSection');
 
 //Event Listeners
 window.addEventListener('load', loadData)
@@ -58,6 +58,7 @@ loginFormSubmit.addEventListener('click', (event) => {
 })
 pastStays.addEventListener('click', displayPastBookings)
 checkAvailabilityButton.addEventListener('click', checkRoomsAvailable)
+
 //WINDOW LOAD FUNCTION
 function loadData() {
   fetchAllData()
@@ -173,16 +174,18 @@ function checkRoomsAvailable() {
   if (hotel.availableRooms.length === 0) {
     bookingError.classList.remove('hidden')
   } else {
+    console.log("hote avail", hotel.availableRooms)
+    console.log("availablerooms", availableRooms)
     hotel.availableRooms.map(room => {
       availableRoomCards.innerHTML += `
-        <article class="available-room-card">
+        <article class="available-room-card" id="availableRoomCardSection">
         <button class="book-now-button">Book now</button>
-        <p class="detail-text">Room number: ${availableRooms.number}</p>
-        <p class="detail-text">Room type: ${availableRooms.roomType}</p>
-        <p class="detail-text">Bidet: ${availableRooms.bidet}</p>
-        <p class="detail-text">Bed size: ${availableRooms.bedSize}</p>
-        <p class="detail-text">Number of beds: ${availableRooms.numBeds}</p>
-        <p class="detail-text">Cost per night: ${availableRooms.costPerNight}</p>
+        <p class="detail-text">Room number: ${room.number}</p>
+        <p class="detail-text">Room type: ${room.roomType}</p>
+        <p class="detail-text">Bidet: ${room.bidet}</p>
+        <p class="detail-text">Bed size: ${room.bedSize}</p>
+        <p class="detail-text">Number of beds: ${room.numBeds}</p>
+        <p class="detail-text">Cost per night: ${room.costPerNight}</p>
         <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
         </article>
       `
