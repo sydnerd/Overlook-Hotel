@@ -170,20 +170,19 @@ function checkRoomsAvailable() {
   let hotel = new Hotel(customers, rooms, bookings)
   const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
   const availableRooms = hotel.findAvailableRooms(dateSelected)
-  console.log("available rooms", hotel.availableRooms)
   if (hotel.availableRooms.length === 0) {
     bookingError.classList.remove('hidden')
   } else {
     hotel.availableRooms.map(room => {
       availableRoomCards.innerHTML += `
         <article class="available-room-card">
-        <button>Book now</button>
-        <p>Room number: ${hotel.availableRooms.number}</p>
-        <p>Room type: ${hotel.availableRooms.roomType}</p>
-        <p>Bidet: ${hotel.availableRooms.bidet}</p>
-        <p>Bed size: ${hotel.availableRooms.bedSize}</p>
-        <p>Number of beds: ${hotel.availableRooms.numBeds}</p>
-        <p>Cost per night: ${hotel.availableRooms.costPerNight}</p>
+        <button class="book-now-button">Book now</button>
+        <p class="detail-text">Room number: ${availableRooms.number}</p>
+        <p class="detail-text">Room type: ${availableRooms.roomType}</p>
+        <p class="detail-text">Bidet: ${availableRooms.bidet}</p>
+        <p class="detail-text">Bed size: ${availableRooms.bedSize}</p>
+        <p class="detail-text">Number of beds: ${availableRooms.numBeds}</p>
+        <p class="detail-text">Cost per night: ${availableRooms.costPerNight}</p>
         <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
         </article>
       `
