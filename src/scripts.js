@@ -25,6 +25,7 @@ let bookings = [];
 let rooms = [];
 let currentCustomer;
 
+
 //Query Selectors
 const totalCost = document.getElementById('totalCost');
 const bookRoomButton = document.getElementById('bookRoom');
@@ -41,7 +42,10 @@ const loginSubmit = document.getElementById('loginFormSubmit');
 const welcomeText = document.getElementById('welcomeText');
 const pastStays = document.getElementById('pastStays');
 const pastStaysSection = document.getElementById('pastStaysSection');
-const calendar = document.getElementById('calendar')
+const calendar = document.getElementById('calendar');
+const bookingError = document.getElementById('bookingError')
+const checkAvailabilityButton = document.getElementById('checkAvailabilityButton')
+
 //Event Listeners
 window.addEventListener('load', loadData)
 bookRoomButton.addEventListener('click', displayBookRoomSection)
@@ -50,7 +54,7 @@ loginFormSubmit.addEventListener('click', (event) => {
   validateUser(event)
 })
 pastStays.addEventListener('click', displayPastBookings)
-
+checkAvailabilityButton.addEventListener('click', checkRoomsAvailable)
 //WINDOW LOAD FUNCTION
 function loadData() {
   fetchAllData()
@@ -152,3 +156,25 @@ function displayPastBookings(bookings) {
   imageContainer.classList.add('hidden')
   bookRoomSection.classList.add('hidden')
 }
+
+// function bookRoom() {
+//
+// }
+
+function checkRoomsAvailable() {
+  let hotel = new Hotel(customers, rooms, bookings)
+  const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
+  console.log("date selected", dateSelected)
+  const availableRooms = hotel.findAvailableRooms(dateSelected)
+  console.log("available rooms", hotel.availableRooms)
+  if(availableRooms.length === 0){
+    bookingError.classList.remove('hidden')
+  }
+  // } else {
+  //   displayRoomsAvailable()
+  // }
+}
+//
+// displayRoomsAvailable() {
+//
+// }

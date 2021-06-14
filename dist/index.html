@@ -78,11 +78,12 @@
     </section>
     <section class="book-room-section hidden" id="bookRoomSection">
       <div>
-        <label class="book-room-titles" for="start">Book room:</label>
+        <label class="book-room-titles" for="start">Check availability:</label>
         <input class="book-room-titles calendar" type="date" id="calendar" name="booking" value="" min="">
       </div>
+      <button class="check-availability-btn" id="checkAvailabilityButton">Check availability</button>
       <div>
-        <form class="room-type-form" id="roomTypeForm">
+        <form class="room-type-form hidden" id="roomTypeForm">
           <label class="book-room-titles" for="rooms">Select a room:</label>
           <select class="book-room-titles select-room" name="room-choice" id="roomChoice">
             <option class="book-room-titles" value="All Rooms">All Rooms</option>
@@ -97,7 +98,7 @@
       </div>
     </section>
     <div>
-      <p class="booking-error" id="bookingError">We are very sorry to inform you that there are no rooms available. Please update your selection.</p>
+      <p class="booking-error hidden" id="bookingError">We are very sorry to inform you that there are no rooms available. Please update your selection.</p>
     </div>
   </main>
   <script src="bundle.js"></script>

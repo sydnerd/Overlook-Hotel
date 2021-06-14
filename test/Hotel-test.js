@@ -8,8 +8,8 @@ import sampleRooms from '../sampleData/sampleRooms';
 
 import Hotel from '../src/Hotel';
 
-describe.only("Hotel", () => {
-  let hotel1, booking1, booking2, room1, room2, room3 , room4, room5, room6, room7, room8, totalBooking, date, type
+describe("Hotel", () => {
+  let hotel1, booking1, booking2, room1, room2, room3 , room4, room5, room6, room7, room8, totalBooking, date, type, type2
 
   beforeEach(() => {
     hotel1 = new Hotel(sampleCustomers, sampleRooms, sampleBookings)
@@ -26,6 +26,7 @@ describe.only("Hotel", () => {
     room8 = sampleRooms[7]
     date = "2020/10/09"
     type = "junior suite"
+    type2 = "single room"
   });
 
 it('should be a function', () => {
@@ -62,3 +63,11 @@ it('should be a function', () => {
    hotel1.findAvailableRooms(date)
    expect(hotel1.availableRooms).to.deep.equal([room2, room3, room4, room5, room6, room7, room8])
  });
+
+ it('should filter rooms by type', () => {
+   hotel1.filterRoomsByType(type)
+   hotel1.filterRoomsByType(type2)
+   expect(hotel1.filterRoomsByType(type)).to.deep.equal([room6, room8])
+   expect(hotel1.filterRoomsByType(type2)).to.deep.equal([room3, room4, room5, room7])
+ });
+});
