@@ -39,8 +39,9 @@ const passwordInput = document.getElementById('passwordInput');
 const usernameInput = document.getElementById('usernameInput');
 const loginSubmit = document.getElementById('loginFormSubmit');
 const welcomeText = document.getElementById('welcomeText');
-const pastStays = document.getElementById('pastStays')
-const pastStaysSection =document.getElementById('pastStaysSection')
+const pastStays = document.getElementById('pastStays');
+const pastStaysSection = document.getElementById('pastStaysSection');
+const calendar = document.getElementById('calendar')
 //Event Listeners
 window.addEventListener('load', loadData)
 bookRoomButton.addEventListener('click', displayBookRoomSection)
@@ -78,11 +79,14 @@ function displayBookRoomSection() {
   imageContainer.classList.add('hidden')
   bookRoomSection.classList.remove('hidden')
   pastStaysSection.classList.add('hidden')
+  calendar.value = dayjs().format('YYYY-MM-DD')
+  calendar.setAttribute('min',calendar.value)
 }
 
 function displayHome() {
   imageContainer.classList.remove('hidden')
   bookRoomSection.classList.add('hidden')
+  pastStaysSection.classList.add('hidden')
 }
 
 function showLogin() {
@@ -132,10 +136,10 @@ function clearForm(usernameInput, passwordInput) {
 function displayTotalCost() {
   currentCustomer.getAllBookings(bookings)
   totalCost.innerText = `$ ${currentCustomer.getTotalCost(rooms)}`
-  console.log(currentCustomer.bookings)
 }
 
-function displayPastBookings(bookings, rooms) {
+function displayPastBookings(bookings) {
+  pastStaysSection.classList.remove('hidden')
   currentCustomer.bookings.map(booking => {
         pastStaysSection.innerHTML += `
           <article class="past-stays-card">
@@ -147,5 +151,4 @@ function displayPastBookings(bookings, rooms) {
     })
   imageContainer.classList.add('hidden')
   bookRoomSection.classList.add('hidden')
-  console.log("current customer",currentCustomer)
 }
