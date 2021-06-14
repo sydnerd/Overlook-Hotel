@@ -43,8 +43,11 @@ const welcomeText = document.getElementById('welcomeText');
 const pastStays = document.getElementById('pastStays');
 const pastStaysSection = document.getElementById('pastStaysSection');
 const calendar = document.getElementById('calendar');
-const bookingError = document.getElementById('bookingError')
-const checkAvailabilityButton = document.getElementById('checkAvailabilityButton')
+const bookingError = document.getElementById('bookingError');
+const checkAvailabilityButton = document.getElementById('checkAvailabilityButton');
+const availableRoomCards = document.getElementById('availableRoomCards');
+const selectRoomType = document.getElementById('roomTypeForm');
+const calendarSection = document.getElementById('calendarSection')
 
 //Event Listeners
 window.addEventListener('load', loadData)
@@ -84,7 +87,9 @@ function displayBookRoomSection() {
   bookRoomSection.classList.remove('hidden')
   pastStaysSection.classList.add('hidden')
   calendar.value = dayjs().format('YYYY-MM-DD')
-  calendar.setAttribute('min',calendar.value)
+  calendar.setAttribute('min', calendar.value)
+  selectRoomType.classList.add('hidden')
+  calendarSection.classList.remove('hidden')
 }
 
 function displayHome() {
@@ -109,8 +114,8 @@ function loadMain() {
 function findCurrentCustomer() {
   let loginInfo = usernameInput.value.split('r');
   return customers.find(customer => {
-    if(customer.id === parseInt(loginInfo[1])){
-      currentCustomer = new Customer(customers[parseInt(loginInfo[1])-1])
+    if (customer.id === parseInt(loginInfo[1])) {
+      currentCustomer = new Customer(customers[parseInt(loginInfo[1]) - 1])
       updateUserWelcome()
       displayTotalCost()
     }
@@ -145,14 +150,14 @@ function displayTotalCost() {
 function displayPastBookings(bookings) {
   pastStaysSection.classList.remove('hidden')
   currentCustomer.bookings.map(booking => {
-        pastStaysSection.innerHTML += `
+    pastStaysSection.innerHTML += `
           <article class="past-stays-card">
-          <h4>Date: ${booking.date}</h4>
+          <p>Date: ${booking.date}</p>
           <p>Room number: ${booking.roomNumber}</p>
           <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
           </article>
         `
-    })
+  })
   imageContainer.classList.add('hidden')
   bookRoomSection.classList.add('hidden')
 }
@@ -163,21 +168,30 @@ function displayPastBookings(bookings) {
 
 function checkRoomsAvailable() {
   let hotel = new Hotel(customers, rooms, bookings)
-  console.log("customers", customers)
-  console.log("rooms", rooms)
-  console.log("bookings", bookings)
   const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
-  console.log("date selected", dateSelected)
   const availableRooms = hotel.findAvailableRooms(dateSelected)
-  console.log("available rooms", hotel.availableRooms)
-  if(availableRooms.length === 0){
+  console.log("available rooms", hotel.availableRooms.length)
+  if (hotel.availableRooms.length === 0) {
     bookingError.classList.remove('hidden')
+  } else {
+    displayRoomsAvailable(availableRooms)
   }
-  // } else {
-  //   displayRoomsAvailable()
-  // }
 }
-//
-// displayRoomsAvailable() {
-//
-// }
+
+function displayRoomsAvailable(availableRooms) {
+  availableRooms.map(room => {
+      availableRoomCards.innerHTML += `
+        <article class="available-room-card">
+        <p>Room number: ${booking.date}</p>
+        <p>Room type: ${booking.roomNumber}</p>
+        <p>Bidet: ${booking.roomNumber}</p>
+        <p>Bed size: ${booking.roomNumber}</p>
+        <p>Number of beds: ${booking.roomNumber}</p>
+        <p>Cost per night: ${booking.roomNumber}</p>
+        <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+        </article>
+      `
+    })
+    selectRoomType.classList.remove('hidden')
+    calendarSection.classList.add('hidden')
+  }

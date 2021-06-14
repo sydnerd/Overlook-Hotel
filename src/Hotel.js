@@ -16,7 +16,6 @@ class Hotel{
 
   findAvailableRooms(date) {
     const bookedRooms = this.findBookedRoomNumber(date)
-    console.log("booked", bookedRooms)
     const filteredRooms = this.rooms.filter(room => {
       if(bookedRooms.length === 0){
         this.availableRooms.push(room)
@@ -28,7 +27,6 @@ class Hotel{
       })
     }
     })
-    console.log("avail",this.availableRooms)
     return filteredRooms
   }
 
