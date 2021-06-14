@@ -18,11 +18,15 @@ class Hotel{
     const bookedRooms = this.findBookedRoomNumber(date)
     console.log("booked", bookedRooms)
     const filteredRooms = this.rooms.filter(room => {
-      bookedRooms.forEach(roomNumber => {
-        if(roomNumber !== room.number) {
-          this.availableRooms.push(room)
-        }
+      if(bookedRooms.length === 0){
+        this.availableRooms.push(room)
+      } else{
+        bookedRooms.forEach(roomNumber => {
+          if(roomNumber !== room.number) {
+            this.availableRooms.push(room)
+          }
       })
+    }
     })
     console.log("avail",this.availableRooms)
     return filteredRooms

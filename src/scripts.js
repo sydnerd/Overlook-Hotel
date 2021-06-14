@@ -163,6 +163,9 @@ function displayPastBookings(bookings) {
 
 function checkRoomsAvailable() {
   let hotel = new Hotel(customers, rooms, bookings)
+  console.log("customers", customers)
+  console.log("rooms", rooms)
+  console.log("bookings", bookings)
   const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
   console.log("date selected", dateSelected)
   const availableRooms = hotel.findAvailableRooms(dateSelected)
