@@ -61,6 +61,7 @@ loginFormSubmit.addEventListener('click', (event) => {
 pastStays.addEventListener('click', displayPastBookings)
 checkAvailabilityButton.addEventListener('click', checkRoomsAvailable)
 roomTypeBtn.addEventListener('click', findRoomsByType)
+availableRoomCards.addEventListener('click', bookRoom)
 
 //WINDOW LOAD FUNCTION
 function loadData() {
@@ -186,7 +187,7 @@ function checkRoomsAvailable() {
         <p class="detail-text">Bidet: ${room.bidet}</p>
         <p class="detail-text">Bed size: ${room.bedSize}</p>
         <p class="detail-text">Number of beds: ${room.numBeds}</p>
-        <p class="detail-text">Cost per night: ${room.costPerNight}</p>
+        <p class="detail-text">Cost per night: $${room.costPerNight}</p>
         <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
         </article>
       `
@@ -196,9 +197,21 @@ function checkRoomsAvailable() {
   }
 }
 
+//got the type, but it will not filter
+
 function findRoomsByType(event) {
   event.preventDefault()
- const type = roomChoice.value
- console.log("type",String(type))
- console.log("yo", hotel.availableRooms)
+ const type = roomChoice.value.toLowerCase()
+ console.log("type",type)
+ console.log("yo", hotel.filterRoomsByType(type))
 }
+
+//once get it to work, need to filter out the cards that aren't the roomType
+//once it is booked, need to show that card in the upcoming bookings
+
+  // function bookRoom(event) {
+  //   if (event.target.classList.contains('book-now-btn')) {
+  //     let roomCardID = event.target.closest('.room-card').dataset.id
+  //   }
+  //   apiCalls.postBooking()
+  // }
