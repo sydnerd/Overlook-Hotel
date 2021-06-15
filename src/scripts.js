@@ -3,9 +3,7 @@
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-import {
-  fetchAllData
-} from './apiCalls';
+import {fetchAllData, postBooking} from './apiCalls';
 import dayjs from 'dayjs';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/img1.jpg'
@@ -50,7 +48,7 @@ const selectRoomType = document.getElementById('roomTypeForm');
 const calendarSection = document.getElementById('calendarSection');
 const roomTypeBtn = document.getElementById('roomTypeBtn');
 const roomChoice = document.getElementById('roomChoice');
-const filteredRoomsArea = document.getElementById('filteredRooms')
+const filteredRoomsArea = document.getElementById('filteredRooms');
 
 //Event Listeners
 window.addEventListener('load', loadData)
@@ -63,6 +61,7 @@ pastStays.addEventListener('click', displayPastBookings)
 checkAvailabilityButton.addEventListener('click', checkRoomsAvailable)
 roomTypeBtn.addEventListener('click', findRoomsByType)
 availableRoomCards.addEventListener('click', bookRoom)
+filteredRoomsArea.addEventListener('click', bookRoom)
 
 //WINDOW LOAD FUNCTION
 function loadData() {
@@ -177,7 +176,7 @@ function checkRoomsAvailable() {
   } else {
     hotel.availableRooms.map(room => {
       availableRoomCards.innerHTML += `
-        <article class="available-room-card" id="availableRoomCardSection">
+        <article class="available-room-card" id=${room.number}>
         <button class="book-now-button">Book now</button>
         <p class="detail-text">Room number: ${room.number}</p>
         <p class="detail-text">Room type: ${room.roomType}</p>
@@ -202,7 +201,7 @@ function findRoomsByType(event) {
  const filteredRooms = hotel.filterRoomsByType(type)
  return filteredRooms.map(room => {
    filteredRoomsArea.innerHTML += `
-     <article class="filtered-room-card" id="filteredRoomCardSection">
+     <article class="filtered-room-card" id=${room.number}>
      <button class="book-now-button">Book now</button>
      <p class="detail-text">Room number: ${room.number}</p>
      <p class="detail-text">Room type: ${room.roomType}</p>
@@ -216,12 +215,14 @@ function findRoomsByType(event) {
  })
 }
 
-//Need to get it to filter for all rooms
 //once it is booked, need to show that card in the upcoming bookings
 
-  // function bookRoom(event) {
-  //   if (event.target.classList.contains('book-now-btn')) {
-  //     let roomCardID = event.target.closest('.room-card').dataset.id
-  //   }
-  //   apiCalls.postBooking()
-  // }
+  function bookRoom(event) {
+    if (event.target.classList.contains('book-now-button')) {
+      const roomNumber = parseInt(event.target.closest('article').id)
+      const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
+      const booking = {id: currentCustomer.id, date: dateSelected, roomNumber}
+      console.log(booking)
+      postBooking(booking)
+    }
+  }

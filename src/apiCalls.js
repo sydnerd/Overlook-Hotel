@@ -26,21 +26,21 @@ const getBookingsData = () => {
     .catch(err => console.log("ERROR"))
 }
 
-// const postBooking = (booking) => {
-//   const initObj = { "userID": booking.id, "date": booking.date, "roomNumber": booking.roomNumber }
-//   const init = {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify(initObj)
-//   }
-//   return fetch(http:localhost:3001/api/v1/bookings, init)
-//   .then(response => response.json())
-//   .catch(err => console.log(err.message))
-// }
-
+const postBooking = (booking) => {
+  const initObj = { userID: booking.id, date: booking.date, roomNumber: booking.roomNumber }
+  const init = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(initObj)
+  }
+  return fetch('http://localhost:3001/api/v1/bookings', init)
+  .then(data => console.log(data))
+  .catch(err => console.log(err.message))
+}
 
 export {
-  fetchAllData
+  fetchAllData,
+  postBooking
 }
