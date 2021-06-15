@@ -173,6 +173,7 @@ function displayPastBookings(bookings) {
   })
   imageContainer.classList.add('hidden')
   bookRoomSection.classList.add('hidden')
+  upcomingStaysSection.classList.add('hidden')
 }
 
 function checkRoomsAvailable(event) {
@@ -244,6 +245,7 @@ function bookRoom(event) {
 }
 
 function displayUpcoming() {
+  upcomingStaysSection.classList.remove('hidden')
   const currentDate = dayjs(Date.now()).format('YYYY/MM/DD');
   imageContainer.classList.add('hidden')
   bookRoomSection.classList.add('hidden')
