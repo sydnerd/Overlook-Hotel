@@ -152,8 +152,7 @@ h3 {
 }
 
 .login-page {
-  display: flex;
-  justify-content: center;
+  @include centered();
   margin-top: 100px;
 }
 
@@ -196,8 +195,6 @@ h3 {
 
 .past-stays-section {
   @include centered();
-  // display: flex;
-  // justify-content: center;
   flex-wrap: wrap;
 }
 

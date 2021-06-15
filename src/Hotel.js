@@ -4,9 +4,7 @@ class Hotel{
     this.rooms = roomData;
     this.bookings = bookingData;
     this.roomType = bookingData.roomType;
-    this.available = true;
     this.availableRooms = []
-    this.availableRoomsByType = []
   }
 
   findBookedRoomNumber(date) {
@@ -16,6 +14,7 @@ class Hotel{
 
   findAvailableRooms(date) {
     const bookedRooms = this.findBookedRoomNumber(date)
+    console.log(bookedRooms)
     const filteredRooms = this.rooms.filter(room => {
       if(bookedRooms.length === 0){
         this.availableRooms.push(room)
