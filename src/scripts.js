@@ -24,6 +24,7 @@ let customers = [];
 let bookings = [];
 let rooms = [];
 let currentCustomer;
+let hotel = new Hotel(customers, rooms, bookings)
 
 //Query Selectors
 const totalCost = document.getElementById('totalCost');
@@ -41,7 +42,15 @@ const loginSubmit = document.getElementById('loginFormSubmit');
 const welcomeText = document.getElementById('welcomeText');
 const pastStays = document.getElementById('pastStays');
 const pastStaysSection = document.getElementById('pastStaysSection');
-const calendar = document.getElementById('calendar')
+const calendar = document.getElementById('calendar');
+const bookingError = document.getElementById('bookingError');
+const checkAvailabilityButton = document.getElementById('checkAvailabilityButton');
+const availableRoomCards = document.getElementById('availableRoomCards');
+const selectRoomType = document.getElementById('roomTypeForm');
+const calendarSection = document.getElementById('calendarSection');
+const roomTypeBtn = document.getElementById('roomTypeBtn')
+const roomChoice = document.getElementById('roomChoice')
+
 //Event Listeners
 window.addEventListener('load', loadData)
 bookRoomButton.addEventListener('click', displayBookRoomSection)
@@ -50,6 +59,8 @@ loginFormSubmit.addEventListener('click', (event) => {
   validateUser(event)
 })
 pastStays.addEventListener('click', displayPastBookings)
+checkAvailabilityButton.addEventListener('click', checkRoomsAvailable)
+roomTypeBtn.addEventListener('click', findRoomsByType)
 
 //WINDOW LOAD FUNCTION
 function loadData() {
@@ -80,7 +91,9 @@ function displayBookRoomSection() {
   bookRoomSection.classList.remove('hidden')
   pastStaysSection.classList.add('hidden')
   calendar.value = dayjs().format('YYYY-MM-DD')
-  calendar.setAttribute('min',calendar.value)
+  calendar.setAttribute('min', calendar.value)
+  selectRoomType.classList.add('hidden')
+  calendarSection.classList.remove('hidden')
 }
 
 function displayHome() {
@@ -105,8 +118,8 @@ function loadMain() {
 function findCurrentCustomer() {
   let loginInfo = usernameInput.value.split('r');
   return customers.find(customer => {
-    if(customer.id === parseInt(loginInfo[1])){
-      currentCustomer = new Customer(customers[parseInt(loginInfo[1])-1])
+    if (customer.id === parseInt(loginInfo[1])) {
+      currentCustomer = new Customer(customers[parseInt(loginInfo[1]) - 1])
       updateUserWelcome()
       displayTotalCost()
     }
@@ -141,14 +154,51 @@ function displayTotalCost() {
 function displayPastBookings(bookings) {
   pastStaysSection.classList.remove('hidden')
   currentCustomer.bookings.map(booking => {
-        pastStaysSection.innerHTML += `
+    pastStaysSection.innerHTML += `
           <article class="past-stays-card">
-          <h4>Date: ${booking.date}</h4>
+          <p>Date: ${booking.date}</p>
           <p>Room number: ${booking.roomNumber}</p>
           <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
           </article>
         `
-    })
+  })
   imageContainer.classList.add('hidden')
   bookRoomSection.classList.add('hidden')
+}
+
+// function bookRoom() {
+//
+// }
+
+function checkRoomsAvailable() {
+  // let hotel = new Hotel(customers, rooms, bookings)
+  const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
+  const availableRooms = hotel.findAvailableRooms(dateSelected)
+  if (hotel.availableRooms.length === 0) {
+    bookingError.classList.remove('hidden')
+  } else {
+    hotel.availableRooms.map(room => {
+      availableRoomCards.innerHTML += `
+        <article class="available-room-card" id="availableRoomCardSection">
+        <button class="book-now-button">Book now</button>
+        <p class="detail-text">Room number: ${room.number}</p>
+        <p class="detail-text">Room type: ${room.roomType}</p>
+        <p class="detail-text">Bidet: ${room.bidet}</p>
+        <p class="detail-text">Bed size: ${room.bedSize}</p>
+        <p class="detail-text">Number of beds: ${room.numBeds}</p>
+        <p class="detail-text">Cost per night: ${room.costPerNight}</p>
+        <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+        </article>
+      `
+    })
+    selectRoomType.classList.remove('hidden')
+    calendarSection.classList.add('hidden')
+  }
+}
+
+function findRoomsByType(event) {
+  event.preventDefault()
+ const type = roomChoice.value
+ console.log("type",String(type))
+ console.log("yo", hotel.availableRooms)
 }

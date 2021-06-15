@@ -16,18 +16,23 @@ class Hotel{
 
   findAvailableRooms(date) {
     const bookedRooms = this.findBookedRoomNumber(date)
-    return this.rooms.filter(room => {
-      bookedRooms.forEach(roomNumber => {
-        if(roomNumber !== room.number) {
-          this.availableRooms.push(room)
-        }
+    const filteredRooms = this.rooms.filter(room => {
+      if(bookedRooms.length === 0){
+        this.availableRooms.push(room)
+      } else{
+        bookedRooms.forEach(roomNumber => {
+          if(roomNumber !== room.number) {
+            this.availableRooms.push(room)
+          }
       })
+    }
     })
+    return filteredRooms
   }
 
-  // filterRoomsByDateAndType(date, roomType) {
-  //
-  // }
+  filterRoomsByType(type) {
+    return this.availableRooms.filter(room => room.roomType === type)
+  }
 }
 
 export default Hotel;
