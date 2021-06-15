@@ -176,8 +176,8 @@ function displayPastBookings(bookings) {
 function checkRoomsAvailable(event) {
   event.preventDefault()
   const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
-  hotel.availableRooms = []
-  const availableRooms = hotel.findAvailableRooms(dateSelected)
+  hotel.findAvailableRooms(dateSelected)
+  availableRoomCards.classList.remove('hidden')
   availableRoomCards.innerHTML = ''
   if (hotel.availableRooms.length === 0) {
     bookingError.classList.remove('hidden')

@@ -13,21 +13,10 @@ class Hotel{
   }
 
   findAvailableRooms(date) {
+    this.availableRooms = []
     const bookedRooms = this.findBookedRoomNumber(date)
-    console.log(bookedRooms)
-    const filteredRooms = this.rooms.filter(room => {
-      if(bookedRooms.length === 0){
-        this.availableRooms.push(room)
-      } else{
-        bookedRooms.forEach(roomNumber => {
-          if(roomNumber !== room.number) {
-            this.availableRooms.push(room)
-          }
-      })
-    }
-    })
-    return filteredRooms
-  }
+    this.availableRooms = this.rooms.filter(room => !bookedRooms.includes(room.number))
+}
 
   filterRoomsByType(type) {
     if(type === 'all rooms'){
