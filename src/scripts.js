@@ -53,6 +53,7 @@ const roomChoice = document.getElementById('roomChoice');
 const filteredRoomsArea = document.getElementById('filteredRooms');
 const upcomingStaysSection = document.getElementById('upcomingStaysSection');
 const upcomingStays = document.getElementById('upcomingStays');
+const bookedRoomMessage = document.getElementById('bookedRoomMessage')
 
 //Event Listeners
 window.addEventListener('load', loadData)
@@ -239,6 +240,7 @@ function bookRoom(event) {
     }
     postBooking(booking)
     displayBookRoomSection()
+    bookedRoomMessage.innerHTML = `Congrats! You booked room ${roomNumber} with us!`
   }
 }
 
