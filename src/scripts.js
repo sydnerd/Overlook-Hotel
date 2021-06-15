@@ -4,7 +4,8 @@
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import {
-  fetchAllData
+  fetchAllData,
+  postBooking
 } from './apiCalls';
 import dayjs from 'dayjs';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
@@ -48,8 +49,9 @@ const checkAvailabilityButton = document.getElementById('checkAvailabilityButton
 const availableRoomCards = document.getElementById('availableRoomCards');
 const selectRoomType = document.getElementById('roomTypeForm');
 const calendarSection = document.getElementById('calendarSection');
-const roomTypeBtn = document.getElementById('roomTypeBtn')
-const roomChoice = document.getElementById('roomChoice')
+const roomTypeBtn = document.getElementById('roomTypeBtn');
+const roomChoice = document.getElementById('roomChoice');
+const filteredRoomsArea = document.getElementById('filteredRooms');
 
 //Event Listeners
 window.addEventListener('load', loadData)
@@ -61,6 +63,8 @@ loginFormSubmit.addEventListener('click', (event) => {
 pastStays.addEventListener('click', displayPastBookings)
 checkAvailabilityButton.addEventListener('click', checkRoomsAvailable)
 roomTypeBtn.addEventListener('click', findRoomsByType)
+availableRoomCards.addEventListener('click', bookRoom)
+filteredRoomsArea.addEventListener('click', bookRoom)
 
 //WINDOW LOAD FUNCTION
 function loadData() {
@@ -166,10 +170,6 @@ function displayPastBookings(bookings) {
   bookRoomSection.classList.add('hidden')
 }
 
-// function bookRoom() {
-//
-// }
-
 function checkRoomsAvailable() {
   // let hotel = new Hotel(customers, rooms, bookings)
   const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
@@ -179,14 +179,14 @@ function checkRoomsAvailable() {
   } else {
     hotel.availableRooms.map(room => {
       availableRoomCards.innerHTML += `
-        <article class="available-room-card" id="availableRoomCardSection">
+        <article class="available-room-card" id=${room.number}>
         <button class="book-now-button">Book now</button>
         <p class="detail-text">Room number: ${room.number}</p>
         <p class="detail-text">Room type: ${room.roomType}</p>
         <p class="detail-text">Bidet: ${room.bidet}</p>
         <p class="detail-text">Bed size: ${room.bedSize}</p>
         <p class="detail-text">Number of beds: ${room.numBeds}</p>
-        <p class="detail-text">Cost per night: ${room.costPerNight}</p>
+        <p class="detail-text">Cost per night: $${room.costPerNight}</p>
         <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
         </article>
       `
@@ -198,7 +198,37 @@ function checkRoomsAvailable() {
 
 function findRoomsByType(event) {
   event.preventDefault()
- const type = roomChoice.value
- console.log("type",String(type))
- console.log("yo", hotel.availableRooms)
+  availableRoomCards.classList.add('hidden')
+  filteredRoomsArea.innerHTML = ''
+  const type = roomChoice.value.toLowerCase()
+  const filteredRooms = hotel.filterRoomsByType(type)
+  return filteredRooms.map(room => {
+    filteredRoomsArea.innerHTML += `
+     <article class="filtered-room-card" id=${room.number}>
+     <button class="book-now-button">Book now</button>
+     <p class="detail-text">Room number: ${room.number}</p>
+     <p class="detail-text">Room type: ${room.roomType}</p>
+     <p class="detail-text">Bidet: ${room.bidet}</p>
+     <p class="detail-text">Bed size: ${room.bedSize}</p>
+     <p class="detail-text">Number of beds: ${room.numBeds}</p>
+     <p class="detail-text">Cost per night: $${room.costPerNight}</p>
+     <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+     </article>
+   `
+  })
+}
+
+//once it is booked, need to show that card in the upcoming bookings
+
+function bookRoom(event) {
+  if (event.target.classList.contains('book-now-button')) {
+    const roomNumber = parseInt(event.target.closest('article').id)
+    const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
+    const booking = {
+      id: currentCustomer.id,
+      date: dateSelected,
+      roomNumber
+    }
+    postBooking(booking)
+  }
 }
