@@ -16,7 +16,6 @@ import './images/img4.jpg'
 import './images/img5.jpg'
 import './images/img6.jpg'
 import './images/img7.jpg'
-import domUpdates from './dom-updates'
 import Customer from './Customer'
 import Hotel from './Hotel'
 
@@ -185,7 +184,6 @@ function checkRoomsAvailable(event) {
   if (hotel.availableRooms.length === 0) {
     bookingError.classList.remove('hidden')
   } else {
-    console.log(hotel.availableRooms.length)
     hotel.availableRooms.map(room => {
       availableRoomCards.innerHTML += `
         <article class="available-room-card" id=${room.number}>
@@ -250,11 +248,7 @@ function displayUpcoming() {
   imageContainer.classList.add('hidden')
   bookRoomSection.classList.add('hidden')
   pastStaysSection.classList.add('hidden')
-  console.log("bookings", bookings)
-  console.log(bookings[0].date)
-  console.log(currentDate)
-  console.log(bookings[0].userID)
-  console.log(currentCustomer.id)
+  upcomingStaysSection.innerHTML = ''
   bookings.map(booking => {
     if(booking.date > currentDate && booking.userID === currentCustomer.id) {
       upcomingStaysSection.innerHTML += `
