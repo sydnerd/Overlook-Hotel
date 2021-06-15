@@ -168,10 +168,6 @@ function displayPastBookings(bookings) {
   bookRoomSection.classList.add('hidden')
 }
 
-// function bookRoom() {
-//
-// }
-
 function checkRoomsAvailable() {
   // let hotel = new Hotel(customers, rooms, bookings)
   const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
@@ -198,14 +194,12 @@ function checkRoomsAvailable() {
   }
 }
 
-//got the type, but it will not filter
-
 function findRoomsByType(event) {
   event.preventDefault()
+  availableRoomCards.classList.add('hidden')
+  filteredRoomsArea.innerHTML = ''
  const type = roomChoice.value.toLowerCase()
  const filteredRooms = hotel.filterRoomsByType(type)
- console.log(filteredRooms)
- availableRoomCards.classList.add('hidden')
  return filteredRooms.map(room => {
    filteredRoomsArea.innerHTML += `
      <article class="filtered-room-card" id="filteredRoomCardSection">
@@ -222,7 +216,7 @@ function findRoomsByType(event) {
  })
 }
 
-//once get it to work, need to filter out the cards that aren't the roomType
+//Need to get it to filter for all rooms
 //once it is booked, need to show that card in the upcoming bookings
 
   // function bookRoom(event) {
