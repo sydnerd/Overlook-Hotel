@@ -181,6 +181,7 @@ h3 {
   font-size: 1.5em;
 }
 
+.upcoming-stays-card,
 .filtered-room-card,
 .available-room-card,
 .past-stays-card {
@@ -193,6 +194,7 @@ h3 {
   padding: 5px;
 }
 
+.upcoming-stays-section,
 .past-stays-section {
   @include centered();
   flex-wrap: wrap;
