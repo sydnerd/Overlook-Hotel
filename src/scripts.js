@@ -52,7 +52,8 @@ const calendarSection = document.getElementById('calendarSection');
 const roomTypeBtn = document.getElementById('roomTypeBtn');
 const roomChoice = document.getElementById('roomChoice');
 const filteredRoomsArea = document.getElementById('filteredRooms');
-const upcomingStaysSection = document.getElementById('upcomingStaysSection')
+const upcomingStaysSection = document.getElementById('upcomingStaysSection');
+const upcomingStays = document.getElementById('upcomingStays');
 
 //Event Listeners
 window.addEventListener('load', loadData)
@@ -66,6 +67,7 @@ checkAvailabilityButton.addEventListener('click', checkRoomsAvailable)
 roomTypeBtn.addEventListener('click', findRoomsByType)
 availableRoomCards.addEventListener('click', bookRoom)
 filteredRoomsArea.addEventListener('click', bookRoom)
+upcomingStays.addEventListener('click', displayUpcoming)
 
 //WINDOW LOAD FUNCTION
 function loadData() {
@@ -231,24 +233,35 @@ function bookRoom(event) {
   if (event.target.classList.contains('book-now-button')) {
     const roomNumber = parseInt(event.target.closest('article').id)
     const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
-    const booking = {id: currentCustomer.id, date: dateSelected, roomNumber}
+    const booking = {
+      id: currentCustomer.id,
+      date: dateSelected,
+      roomNumber
+    }
     postBooking(booking)
-    hotel.availableRooms =[]
     displayBookRoomSection()
   }
 }
 
 function displayUpcoming() {
-  const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
-  if(bookings.date > dateSelected && bookings.userID === currentCustomer.id){
-    bookings.map(room => {
+  const currentDate = dayjs(Date.now()).format('YYYY/MM/DD');
+  imageContainer.classList.add('hidden')
+  bookRoomSection.classList.add('hidden')
+  pastStaysSection.classList.add('hidden')
+  console.log("bookings", bookings)
+  console.log(bookings[0].date)
+  console.log(currentDate)
+  console.log(bookings[0].userID)
+  console.log(currentCustomer.id)
+  bookings.map(booking => {
+    if(booking.date > currentDate && booking.userID === currentCustomer.id) {
       upcomingStaysSection.innerHTML += `
-            <article class="past-stays-card">
-            <p>Date: ${booking.date}</p>
-            <p>Room number: ${booking.roomNumber}</p>
-            <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
-            </article>
-          `
-    })
-  }
+              <article class="upcoming-stays-card">
+              <p>Date: ${booking.date}</p>
+              <p>Room number: ${booking.roomNumber}</p>
+              <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+              </article>
+            `
+    }
+  })
 }
