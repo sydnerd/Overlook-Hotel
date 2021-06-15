@@ -64,7 +64,7 @@ it('should be a function', () => {
    expect(hotel1.availableRooms).to.deep.equal([room2, room3, room4, room5, room6, room7, room8])
  });
 
- it('should filter rooms by type', () => {
+ it.only('should filter rooms by type', () => {
    hotel1.filterRoomsByType(type)
    hotel1.filterRoomsByType(type2)
    expect(hotel1.filterRoomsByType(type)).to.deep.equal([room6, room8])
