@@ -1,5 +1,6 @@
 @import 'reset';
 @import 'variables';
+@import 'mixins';
 
 // /* MOBILE STYLING */
 * {
@@ -194,8 +195,9 @@ h3 {
 }
 
 .past-stays-section {
-  display: flex;
-  justify-content: center;
+  @include centered();
+  // display: flex;
+  // justify-content: center;
   flex-wrap: wrap;
 }
 

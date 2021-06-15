@@ -3,7 +3,10 @@
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-import {fetchAllData, postBooking} from './apiCalls';
+import {
+  fetchAllData,
+  postBooking
+} from './apiCalls';
 import dayjs from 'dayjs';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/img1.jpg'
@@ -197,10 +200,10 @@ function findRoomsByType(event) {
   event.preventDefault()
   availableRoomCards.classList.add('hidden')
   filteredRoomsArea.innerHTML = ''
- const type = roomChoice.value.toLowerCase()
- const filteredRooms = hotel.filterRoomsByType(type)
- return filteredRooms.map(room => {
-   filteredRoomsArea.innerHTML += `
+  const type = roomChoice.value.toLowerCase()
+  const filteredRooms = hotel.filterRoomsByType(type)
+  return filteredRooms.map(room => {
+    filteredRoomsArea.innerHTML += `
      <article class="filtered-room-card" id=${room.number}>
      <button class="book-now-button">Book now</button>
      <p class="detail-text">Room number: ${room.number}</p>
@@ -212,17 +215,20 @@ function findRoomsByType(event) {
      <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
      </article>
    `
- })
+  })
 }
 
 //once it is booked, need to show that card in the upcoming bookings
 
-  function bookRoom(event) {
-    if (event.target.classList.contains('book-now-button')) {
-      const roomNumber = parseInt(event.target.closest('article').id)
-      const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
-      const booking = {id: currentCustomer.id, date: dateSelected, roomNumber}
-      console.log(booking)
-      postBooking(booking)
+function bookRoom(event) {
+  if (event.target.classList.contains('book-now-button')) {
+    const roomNumber = parseInt(event.target.closest('article').id)
+    const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
+    const booking = {
+      id: currentCustomer.id,
+      date: dateSelected,
+      roomNumber
     }
+    postBooking(booking)
   }
+}
