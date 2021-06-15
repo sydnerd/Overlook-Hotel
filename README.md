@@ -6,25 +6,25 @@ The Overlook Hotel is an application where users can book hotel rooms. The user 
 
 This application was written by [Sydney Bear ](https://github.com/sydnerd), a Mod 2 Frontend Engineering student at [Turing School of Software & Design](https://turing.edu/).
 
-#Login View
+**Login View**
 ![](./images/login.gif)
 
-#Main View
-![](images/main-view.gif)
+**Main View**
+![](/images/main-view.gif)
 
-#Check Availability By Date
+**Check Availability By Date**
 ![](images/check-by-date.gif)
 
-#Check Availability By Room Type
+**Check Availability By Room Type**
 ![](images/filter-by-roomtype.gif)
 
-#Book Room
+**Book Room**
 ![](images/book-room.gif)
 
-#Past Stays View
+**Past Stays View**
 ![](images/past-stays.gif)
 
-#Upcoming Stays View
+**Upcoming Stays View**
 ![](images/upcoming-stays.gif)
 
 ## Setup
