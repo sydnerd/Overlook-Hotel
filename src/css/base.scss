@@ -1,22 +1,9 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-// $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+@import 'reset';
+@import 'variables';
 
-// body {
-//   background: $primary-background;
-// }
-
-
-
-/* RESET */
-nav, body, h1, h2,h3 {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-}
-
-/* MOBILE STYLING */
+// /* MOBILE STYLING */
 * {
-  color: rgba(255, 255, 255, 1);
+  color: $white;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 1em;
@@ -32,19 +19,19 @@ nav {
 }
 
 .colored-icon {
-  color: #359DDB
+  color: #359DDB;
 }
 
 .company-logo {
   margin-bottom: 0;
-  margin-top: .5em;
+  margin-top: 0.5em;
   font-family: 'Fjalla One', sans-serif;
   font-size: 2em;
 }
 
 .left-dropdown:hover {
-  font-size: .5em;
-  margin-bottom: .5em;
+  font-size: 0.5em;
+  margin-bottom: 0.5em;
   cursor: pointer;
 }
 
@@ -56,23 +43,24 @@ nav {
   margin-right: 1em;
 }
 
-.nav-icons,
 .left-nav,
+.nav-icons,
 .username {
   display: flex;
 }
 
-.home-icon,
-.star-icon,
-.night-icon,
+.account-icon,
 .bed-icon,
-.account-icon {
+.home-icon,
+.night-icon,
+.star-icon {
   display: none;
 }
 
 .left-nav {
   margin-top: 6em;
   margin-left: 1em;
+  display: block;
 }
 
 .username {
@@ -94,25 +82,24 @@ body {
 }
 
 .colored-word {
-  color: #9D9D9E;
+  color: $blue;
 }
 
 h2 {
-  color: #4D4D4D;
+  color: $dark-grey;
   font-size: 3em;
   padding: 25px;
 }
 
 h3 {
-  color: #4D4D4D;
+  color: $dark-grey;
   font-size: 1em;
   padding: 5px;
 }
 
 .total-cost-container {
-  display:flex;
+  display: flex;
 }
-
 
 .image-container {
   position: relative;
@@ -130,10 +117,6 @@ h3 {
   height: 100%;
 }
 
-.left-nav {
-  display: block;
-}
-
 .book-room-section {
   display: flex;
   justify-content: space-between;
@@ -143,28 +126,28 @@ h3 {
 
 .book-room-titles,
 .login-form-submit {
-  color: #4D4D4D;
+  color: $dark-grey;
   font-size: 1.5em;
 }
 
 .book-now-button,
-.submit-btn,
 .check-availability-btn,
-.login-form-submit:hover {
-  color: #4D4D4D;
+.login-form-submit:hover,
+.submit-btn {
+  color: $dark-grey;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .input-container {
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
 }
 
 .input {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
 .login-page {
@@ -173,24 +156,24 @@ h3 {
   margin-top: 100px;
 }
 
-.login-error,
-.booking-error {
+.booking-error,
+.login-error {
   font-size: 1em;
-  color:red;
+  color: red;
 }
 
 .login-title {
   font-size: 3em;
-  color: #4D4D4D;
+  color: $dark-grey;
 }
 
 .login-form-input {
-  color: #4D4D4D;
+  color: $dark-grey;
 }
 
-.submit-btn,
+.calendar:hover,
 .select-room,
-.calendar:hover{
+.submit-btn {
   cursor: pointer;
 }
 
@@ -198,19 +181,19 @@ h3 {
   font-size: 1.5em;
 }
 
-.past-stays-card,
-.available-room-card {
-  background-color: #9D9D9E;
+.available-room-card,
+.past-stays-card {
+  background-color: $blue;
   margin-bottom: 10px;
-  width:200px;
+  width: 200px;
   height: 100%;
   margin-right: 10px;
   border-radius: 5px;
-  padding:5px;
+  padding: 5px;
 }
 
 .past-stays-section {
-  display:flex;
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -221,9 +204,9 @@ h3 {
 
 .check-availability-btn,
 .submit-btn {
-  background-color: #9D9D9E;
+  background-color: $blue;
   border: none;
-  color: #FFFFFF;
+  color: $white;
 }
 
 .available-room-cards {
@@ -233,23 +216,26 @@ h3 {
 }
 
 .detail-text {
-  margin:0;
+  margin: 0;
 }
 /* SMALL TABLET STYLING */
 @media screen and (min-width: 620px) {
-  .home-icon,
-  .star-icon,
-  .night-icon,
+  .account-icon,
   .bed-icon,
-  .account-icon {
+  .home-icon,
+  .night-icon,
+  .star-icon {
     display: inline;
   }
+
   .left-nav {
     display: flex;
   }
+
   .left-dropdown {
     font-size: 1em;
   }
+
   .image-container {
     position: relative;
     display: grid;
@@ -261,10 +247,8 @@ h3 {
     margin-top: 25px;
   }
 }
-
 /* LARGE TABLET AND LAPTOP STYLING  */
 @media screen and (min-width: 960px) {
-
   .image-container {
     position: relative;
     display: grid;
@@ -277,14 +261,13 @@ h3 {
     margin-left: 25px;
   }
 
-  .share-icon,
+  .account-icon,
   .heart-icon,
   .person-icon,
-  .account-icon {
+  .share-icon {
     display: inline;
   }
 }
-
 /* DESKTOP STYLING  */
 @media screen and (min-width: 1200px) {
   .image-section {
@@ -295,16 +278,15 @@ h3 {
     grid-template-rows: repeat(2, 1fr);
   }
 
-
-  .home-icon,
-  .star-icon,
-  .night-icon,
+  .account-icon,
   .bed-icon,
-  .account-icon {
+  .home-icon,
+  .night-icon,
+  .star-icon {
     display: inline;
   }
 }
 
 .hidden {
-  display:none;
+  display: none;
 }
