@@ -48,8 +48,9 @@ const checkAvailabilityButton = document.getElementById('checkAvailabilityButton
 const availableRoomCards = document.getElementById('availableRoomCards');
 const selectRoomType = document.getElementById('roomTypeForm');
 const calendarSection = document.getElementById('calendarSection');
-const roomTypeBtn = document.getElementById('roomTypeBtn')
-const roomChoice = document.getElementById('roomChoice')
+const roomTypeBtn = document.getElementById('roomTypeBtn');
+const roomChoice = document.getElementById('roomChoice');
+const filteredRoomsArea = document.getElementById('filteredRooms')
 
 //Event Listeners
 window.addEventListener('load', loadData)
@@ -202,8 +203,23 @@ function checkRoomsAvailable() {
 function findRoomsByType(event) {
   event.preventDefault()
  const type = roomChoice.value.toLowerCase()
- console.log("type",type)
- console.log("yo", hotel.filterRoomsByType(type))
+ const filteredRooms = hotel.filterRoomsByType(type)
+ console.log(filteredRooms)
+ availableRoomCards.classList.add('hidden')
+ return filteredRooms.map(room => {
+   filteredRoomsArea.innerHTML += `
+     <article class="filtered-room-card" id="filteredRoomCardSection">
+     <button class="book-now-button">Book now</button>
+     <p class="detail-text">Room number: ${room.number}</p>
+     <p class="detail-text">Room type: ${room.roomType}</p>
+     <p class="detail-text">Bidet: ${room.bidet}</p>
+     <p class="detail-text">Bed size: ${room.bedSize}</p>
+     <p class="detail-text">Number of beds: ${room.numBeds}</p>
+     <p class="detail-text">Cost per night: $${room.costPerNight}</p>
+     <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+     </article>
+   `
+ })
 }
 
 //once get it to work, need to filter out the cards that aren't the roomType
