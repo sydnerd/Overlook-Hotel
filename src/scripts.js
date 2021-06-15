@@ -52,6 +52,8 @@ const calendarSection = document.getElementById('calendarSection');
 const roomTypeBtn = document.getElementById('roomTypeBtn');
 const roomChoice = document.getElementById('roomChoice');
 const filteredRoomsArea = document.getElementById('filteredRooms');
+const upcomingStaysSection = document.getElementById('upcomingStaysSection');
+const upcomingStays = document.getElementById('upcomingStays');
 
 //Event Listeners
 window.addEventListener('load', loadData)
@@ -65,6 +67,7 @@ checkAvailabilityButton.addEventListener('click', checkRoomsAvailable)
 roomTypeBtn.addEventListener('click', findRoomsByType)
 availableRoomCards.addEventListener('click', bookRoom)
 filteredRoomsArea.addEventListener('click', bookRoom)
+upcomingStays.addEventListener('click', displayUpcoming)
 
 //WINDOW LOAD FUNCTION
 function loadData() {
@@ -98,6 +101,8 @@ function displayBookRoomSection() {
   calendar.setAttribute('min', calendar.value)
   selectRoomType.classList.add('hidden')
   calendarSection.classList.remove('hidden')
+  availableRoomCards.innerHTML = ''
+  filteredRoomsArea.innerHTML = ''
 }
 
 function displayHome() {
@@ -168,15 +173,19 @@ function displayPastBookings(bookings) {
   })
   imageContainer.classList.add('hidden')
   bookRoomSection.classList.add('hidden')
+  upcomingStaysSection.classList.add('hidden')
 }
 
-function checkRoomsAvailable() {
-  // let hotel = new Hotel(customers, rooms, bookings)
+function checkRoomsAvailable(event) {
+  event.preventDefault()
   const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
-  const availableRooms = hotel.findAvailableRooms(dateSelected)
+  hotel.findAvailableRooms(dateSelected)
+  availableRoomCards.classList.remove('hidden')
+  availableRoomCards.innerHTML = ''
   if (hotel.availableRooms.length === 0) {
     bookingError.classList.remove('hidden')
   } else {
+    console.log(hotel.availableRooms.length)
     hotel.availableRooms.map(room => {
       availableRoomCards.innerHTML += `
         <article class="available-room-card" id=${room.number}>
@@ -202,6 +211,7 @@ function findRoomsByType(event) {
   filteredRoomsArea.innerHTML = ''
   const type = roomChoice.value.toLowerCase()
   const filteredRooms = hotel.filterRoomsByType(type)
+  console.log(hotel.availableRooms)
   return filteredRooms.map(room => {
     filteredRoomsArea.innerHTML += `
      <article class="filtered-room-card" id=${room.number}>
@@ -230,5 +240,30 @@ function bookRoom(event) {
       roomNumber
     }
     postBooking(booking)
+    displayBookRoomSection()
   }
+}
+
+function displayUpcoming() {
+  upcomingStaysSection.classList.remove('hidden')
+  const currentDate = dayjs(Date.now()).format('YYYY/MM/DD');
+  imageContainer.classList.add('hidden')
+  bookRoomSection.classList.add('hidden')
+  pastStaysSection.classList.add('hidden')
+  console.log("bookings", bookings)
+  console.log(bookings[0].date)
+  console.log(currentDate)
+  console.log(bookings[0].userID)
+  console.log(currentCustomer.id)
+  bookings.map(booking => {
+    if(booking.date > currentDate && booking.userID === currentCustomer.id) {
+      upcomingStaysSection.innerHTML += `
+              <article class="upcoming-stays-card">
+              <p>Date: ${booking.date}</p>
+              <p>Room number: ${booking.roomNumber}</p>
+              <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+              </article>
+            `
+    }
+  })
 }

@@ -152,8 +152,7 @@ h3 {
 }
 
 .login-page {
-  display: flex;
-  justify-content: center;
+  @include centered();
   margin-top: 100px;
 }
 
@@ -182,6 +181,7 @@ h3 {
   font-size: 1.5em;
 }
 
+.upcoming-stays-card,
 .filtered-room-card,
 .available-room-card,
 .past-stays-card {
@@ -194,10 +194,9 @@ h3 {
   padding: 5px;
 }
 
+.upcoming-stays-section,
 .past-stays-section {
   @include centered();
-  // display: flex;
-  // justify-content: center;
   flex-wrap: wrap;
 }
 
