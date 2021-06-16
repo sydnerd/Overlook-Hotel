@@ -23,12 +23,15 @@ This application was written by [Sydney Bear ](https://github.com/sydnerd), a Mo
 ![](./src/images/filter-by-roomtype.gif)
 
 **Book Room**
+
 ![](./src/images/book-room.gif)
 
 **Past Stays View**
+
 ![](./src/images/past-stays.gif)
 
 **Upcoming Stays View**
+
 ![](./src/images/upcoming-stays.gif)
 
 ## Setup
