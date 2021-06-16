@@ -34,7 +34,6 @@ This application was written by [Sydney Bear ](https://github.com/sydnerd), a Mo
 
 ![](./src/images/upcoming-stays.gif)
 
-
 ## Setup
 
 1. Clone down this [repo](https://github.com/turingschool-examples/overlook-api)
