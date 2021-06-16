@@ -1,9 +1,7 @@
-
-
 const fetchAllData = () => {
-    const promises = [getCustomerData(), getRoomsData(), getBookingsData()]
-    return Promise.all(promises)
-        .catch(error => console.log("ERROR"))
+  const promises = [getCustomerData(), getRoomsData(), getBookingsData()]
+  return Promise.all(promises)
+    .catch(error => console.log("ERROR"))
 }
 
 const getCustomerData = () => {
@@ -27,7 +25,11 @@ const getBookingsData = () => {
 }
 
 const postBooking = (booking) => {
-  const initObj = { userID: booking.id, date: booking.date, roomNumber: booking.roomNumber }
+  const initObj = {
+    userID: booking.id,
+    date: booking.date,
+    roomNumber: booking.roomNumber
+  }
   const init = {
     method: "POST",
     headers: {
@@ -36,11 +38,12 @@ const postBooking = (booking) => {
     body: JSON.stringify(initObj)
   }
   return fetch('http://localhost:3001/api/v1/bookings', init)
-  .then(data => console.log(data))
-  .catch(err => console.log(err.message))
+    .then(data => console.log(data))
+    .catch(err => console.log(err.message))
 }
 
 export {
   fetchAllData,
-  postBooking
+  postBooking,
+  getBookingsData
 }

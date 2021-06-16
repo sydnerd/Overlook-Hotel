@@ -5,7 +5,8 @@
 import './css/base.scss';
 import {
   fetchAllData,
-  postBooking
+  postBooking,
+  getBookingsData
 } from './apiCalls';
 import dayjs from 'dayjs';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
@@ -60,7 +61,6 @@ const roomChoice = document.getElementById('roomChoice');
 const filteredRoomsArea = document.getElementById('filteredRooms');
 const upcomingStaysSection = document.getElementById('upcomingStaysSection');
 const upcomingStays = document.getElementById('upcomingStays');
-const bookedRoomMessage = document.getElementById('bookedRoomMessage')
 
 //Event Listeners
 window.addEventListener('load', loadData)
@@ -104,6 +104,7 @@ function displayBookRoomSection() {
   imageContainer.classList.add('hidden')
   bookRoomSection.classList.remove('hidden')
   pastStaysSection.classList.add('hidden')
+  upcomingStaysSection.classList.add('hidden')
   calendar.value = dayjs().format('YYYY-MM-DD')
   calendar.setAttribute('min', calendar.value)
   selectRoomType.classList.add('hidden')
@@ -187,6 +188,7 @@ function checkRoomsAvailable(event) {
   event.preventDefault()
   const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
   hotel.findAvailableRooms(dateSelected)
+  console.log(hotel.availableRooms)
   availableRoomCards.classList.remove('hidden')
   availableRoomCards.innerHTML = ''
   if (hotel.availableRooms.length === 0) {
@@ -234,8 +236,6 @@ function findRoomsByType(event) {
   })
 }
 
-//once it is booked, need to show that card in the upcoming bookings
-
 function bookRoom(event) {
   if (event.target.classList.contains('book-now-button')) {
     const roomNumber = parseInt(event.target.closest('article').id)
@@ -246,9 +246,25 @@ function bookRoom(event) {
       roomNumber
     }
     postBooking(booking)
+    clearData()
+    loadDataAfterBooking()
     displayBookRoomSection()
-    bookedRoomMessage.innerHTML = `Congrats! You booked room ${roomNumber} with us!`
   }
+}
+
+function clearData() {
+  customers = [];
+  bookings = [];
+  rooms = [];
+  hotel = new Hotel(customers, rooms, bookings)
+}
+function loadDataAfterBooking() {
+  fetchAllData()
+    .then(function(data) {
+      fillCustomers(data[0])
+      fillBookings(data[2])
+      fillRooms(data[1])
+    })
 }
 
 function displayUpcoming() {

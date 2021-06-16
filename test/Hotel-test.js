@@ -9,13 +9,12 @@ import sampleRooms from '../sampleData/sampleRooms';
 import Hotel from '../src/Hotel';
 
 describe("Hotel", () => {
-  let hotel1, booking1, booking2, room1, room2, room3 , room4, room5, room6, room7, room8, totalBooking, date, type, type2
+  let hotel1, booking1, booking2, room1, room2, room3 , room4, room5, room6, room7, room8, date, type, type2
 
   beforeEach(() => {
     hotel1 = new Hotel(sampleCustomers, sampleRooms, sampleBookings)
     booking1 = sampleBookings[0]
     booking2 = sampleBookings[1]
-    totalBooking = [booking1, booking2]
     room1 = sampleRooms[0]
     room2 = sampleRooms[1]
     room3 = sampleRooms[2]
