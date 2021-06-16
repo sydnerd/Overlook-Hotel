@@ -65,8 +65,11 @@ it('should be a function', () => {
  });
 
  it.only('should filter rooms by type', () => {
+   hotel1.findBookedRoomNumber(date)
+   hotel1.findAvailableRooms(date)
    hotel1.filterRoomsByType(type)
    hotel1.filterRoomsByType(type2)
+   console.log("HIIII",hotel1.filterRoomsByType(type))
    expect(hotel1.filterRoomsByType(type)).to.deep.equal([room6, room8])
    expect(hotel1.filterRoomsByType(type2)).to.deep.equal([room3, room4, room5, room7])
  });
