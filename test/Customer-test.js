@@ -51,6 +51,7 @@ describe("Customer", () => {
  it('should get total dollar amount for all bookings', () => {
    customer1.getAllBookings(sampleBookings)
    expect(customer1.getTotalCost(sampleRooms)).to.eql('835.78')
+   expect(customer1.getTotalCost(sampleRooms)).to.not.equal('835.789')
  });
 
 })

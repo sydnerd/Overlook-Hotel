@@ -1,7 +1,6 @@
 @import 'reset';
 @import 'variables';
 @import 'mixins';
-
 // /* MOBILE STYLING */
 * {
   color: $white;
@@ -19,8 +18,7 @@ nav {
   padding: 0;
 }
 
-.colored-icon,
-.booked-room-message {
+.colored-icon {
   color: $blue;
 }
 
@@ -182,10 +180,10 @@ h3 {
   font-size: 1.5em;
 }
 
-.upcoming-stays-card,
-.filtered-room-card,
 .available-room-card,
-.past-stays-card {
+.filtered-room-card,
+.past-stays-card,
+.upcoming-stays-card {
   background-color: $light-grey;
   margin-bottom: 10px;
   width: 200px;
@@ -195,8 +193,8 @@ h3 {
   padding: 5px;
 }
 
-.upcoming-stays-section,
-.past-stays-section {
+.past-stays-section,
+.upcoming-stays-section {
   @include centered();
   flex-wrap: wrap;
 }
@@ -212,8 +210,8 @@ h3 {
   color: $white;
 }
 
-.filtered-room-cards,
-.available-room-cards {
+.available-room-cards,
+.filtered-room-cards {
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
