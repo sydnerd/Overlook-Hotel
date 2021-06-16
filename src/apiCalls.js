@@ -38,7 +38,8 @@ const postBooking = (booking) => {
     body: JSON.stringify(initObj)
   }
   return fetch('http://localhost:3001/api/v1/bookings', init)
-    .then(data => console.log(data))
+    .then(response => response.json())
+    .then(data => data)
     .catch(err => console.log(err.message))
 }
 

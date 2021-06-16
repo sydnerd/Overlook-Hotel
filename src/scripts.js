@@ -9,7 +9,6 @@ import {
   getBookingsData
 } from './apiCalls';
 import dayjs from 'dayjs';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/img1.jpg'
 import './images/img2.jpg'
 import './images/img3.jpg'
@@ -85,6 +84,7 @@ function loadData() {
       fillRooms(data[1])
     })
   showLogin()
+  console.log("bookings", bookings)
 }
 
 //Functions
@@ -239,12 +239,12 @@ function bookRoom(event) {
   if (event.target.classList.contains('book-now-button')) {
     const roomNumber = parseInt(event.target.closest('article').id)
     const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
-    const booking = {
+    const bookingSelected = {
       id: currentCustomer.id,
       date: dateSelected,
       roomNumber
     }
-    postBooking(booking)
+    postBooking(bookingSelected)
     clearData()
     loadDataAfterBooking()
     displayBookRoomSection()
@@ -257,6 +257,7 @@ function clearData() {
   rooms = [];
   hotel = new Hotel(customers, rooms, bookings)
 }
+
 function loadDataAfterBooking() {
   fetchAllData()
     .then(function(data) {
@@ -266,22 +267,34 @@ function loadDataAfterBooking() {
     })
 }
 
+function loadDisplay() {
+  fetchAllData()
+    .then(function(data) {
+      fillCustomers(data[0])
+      fillBookings(data[2])
+      fillRooms(data[1])
+      upcomingStaysSection.classList.remove('hidden')
+      const currentDate = dayjs(Date.now()).format('YYYY/MM/DD');
+      imageContainer.classList.add('hidden')
+      bookRoomSection.classList.add('hidden')
+      pastStaysSection.classList.add('hidden')
+      upcomingStaysSection.innerHTML = ''
+      bookings.forEach(booking => {
+        if((booking.date >= currentDate) && (booking.userID === currentCustomer.id)) {
+          console.log(booking)
+          upcomingStaysSection.innerHTML += `
+                  <article class="upcoming-stays-card">
+                  <p>Date: ${booking.date}</p>
+                  <p>Room number: ${booking.roomNumber}</p>
+                  <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+                  </article>
+                `
+        }
+      })
+    })
+}
+
 function displayUpcoming() {
-  upcomingStaysSection.classList.remove('hidden')
-  const currentDate = dayjs(Date.now()).format('YYYY/MM/DD');
-  imageContainer.classList.add('hidden')
-  bookRoomSection.classList.add('hidden')
-  pastStaysSection.classList.add('hidden')
-  upcomingStaysSection.innerHTML = ''
-  bookings.map(booking => {
-    if(booking.date > currentDate && booking.userID === currentCustomer.id) {
-      upcomingStaysSection.innerHTML += `
-              <article class="upcoming-stays-card">
-              <p>Date: ${booking.date}</p>
-              <p>Room number: ${booking.roomNumber}</p>
-              <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
-              </article>
-            `
-    }
-  })
+  clearData()
+  loadDisplay()
 }
