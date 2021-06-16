@@ -38,8 +38,28 @@ const postBooking = (booking) => {
     body: JSON.stringify(initObj)
   }
   return fetch('http://localhost:3001/api/v1/bookings', init)
-    .then(data => console.log(data))
-    .catch(err => console.log(err.message))
+    .then(response => checkForErr(response))
+    .then(data => data)
+    .catch(err => displayBookingError())
+}
+
+const checkForErr = (response) => {
+  if(!response.ok) {
+    throw new Error('Something went wrong')
+  } else {
+    displaySuccess()
+    return response.json();
+  }
+}
+
+const displayBookingError = () => {
+  errorMsg.innerText = "Something went wrong. Please try again."
+  setTimeout(() => errorMsg.innerText = "", 2000)
+}
+
+const displaySuccess = () => {
+  errorMsg.innerText = "You have booked sucessfully!"
+  setTimeout(() => errorMsg.innerText = "", 2000)
 }
 
 export {
