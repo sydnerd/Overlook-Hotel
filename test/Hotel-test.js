@@ -51,26 +51,29 @@ it('should be a function', () => {
 
  it('should have a room type', () => {
    expect(hotel1.roomType).to.eql(sampleBookings.roomType);
+   expect(hotel1.roomType).to.not.equal(sampleBookings)
  });
 
  it('should find the rooms that are booked', () => {
    hotel1.findBookedRoomNumber(date)
    expect(hotel1.findBookedRoomNumber(date)).to.deep.equal([1])
+   expect(hotel1.findBookedRoomNumber(date)).to.not.equal(1)
  });
 
  it('should find rooms that are available', () => {
    hotel1.findBookedRoomNumber(date)
    hotel1.findAvailableRooms(date)
    expect(hotel1.availableRooms).to.deep.equal([room2, room3, room4, room5, room6, room7, room8])
+   expect(hotel1.availableRooms).to.not.equal([room1, room2, room3, room4, room5])
  });
 
- it.only('should filter rooms by type', () => {
+ it('should filter rooms by type', () => {
    hotel1.findBookedRoomNumber(date)
    hotel1.findAvailableRooms(date)
    hotel1.filterRoomsByType(type)
    hotel1.filterRoomsByType(type2)
-   console.log("HIIII",hotel1.filterRoomsByType(type))
    expect(hotel1.filterRoomsByType(type)).to.deep.equal([room6, room8])
    expect(hotel1.filterRoomsByType(type2)).to.deep.equal([room3, room4, room5, room7])
+   expect(hotel1.filterRoomsByType(type)).to.not.equal([room1, room2])
  });
 });
