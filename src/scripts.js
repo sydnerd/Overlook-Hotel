@@ -219,7 +219,6 @@ function findRoomsByType(event) {
   filteredRoomsArea.innerHTML = ''
   const type = roomChoice.value.toLowerCase()
   const filteredRooms = hotel.filterRoomsByType(type)
-  console.log(hotel.availableRooms)
   return filteredRooms.map(room => {
     filteredRoomsArea.innerHTML += `
      <article class="filtered-room-card" id=${room.number}>
