@@ -1,6 +1,5 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import {
@@ -25,14 +24,12 @@ import './images/past-stays.gif'
 import './images/upcoming-stays.gif'
 import Customer from './Customer'
 import Hotel from './Hotel'
-
 //Global Variables
 let customers = [];
 let bookings = [];
 let rooms = [];
 let currentCustomer;
 let hotel = new Hotel(customers, rooms, bookings)
-
 //Query Selectors
 const totalCost = document.getElementById('totalCost');
 const bookRoomButton = document.getElementById('bookRoom');
@@ -60,7 +57,7 @@ const roomChoice = document.getElementById('roomChoice');
 const filteredRoomsArea = document.getElementById('filteredRooms');
 const upcomingStaysSection = document.getElementById('upcomingStaysSection');
 const upcomingStays = document.getElementById('upcomingStays');
-
+const errorMsg =document.getElementById('errorMsg')
 //Event Listeners
 window.addEventListener('load', loadData)
 bookRoomButton.addEventListener('click', displayBookRoomSection)
@@ -74,7 +71,6 @@ roomTypeBtn.addEventListener('click', findRoomsByType)
 availableRoomCards.addEventListener('click', bookRoom)
 filteredRoomsArea.addEventListener('click', bookRoom)
 upcomingStays.addEventListener('click', displayUpcoming)
-
 //WINDOW LOAD FUNCTION
 function loadData() {
   fetchAllData()
@@ -84,22 +80,17 @@ function loadData() {
       fillRooms(data[1])
     })
   showLogin()
-  console.log("bookings", bookings)
 }
-
 //Functions
 function fillCustomers(customerData) {
   customerData.customers.forEach(customer => customers.push(customer))
 }
-
 function fillBookings(bookingsData) {
   bookingsData.bookings.forEach(booking => bookings.push(booking))
 }
-
 function fillRooms(roomData) {
   roomData.rooms.forEach(room => rooms.push(room))
 }
-
 function displayBookRoomSection() {
   imageContainer.classList.add('hidden')
   bookRoomSection.classList.remove('hidden')
@@ -112,26 +103,22 @@ function displayBookRoomSection() {
   availableRoomCards.innerHTML = ''
   filteredRoomsArea.innerHTML = ''
 }
-
 function displayHome() {
   imageContainer.classList.remove('hidden')
   bookRoomSection.classList.add('hidden')
   pastStaysSection.classList.add('hidden')
 }
-
 function showLogin() {
   nav.classList.add('hidden')
   main.classList.add('hidden')
   login.classList.remove('hidden')
 }
-
 function loadMain() {
   login.classList.add('hidden')
   main.classList.remove('hidden')
   nav.classList.remove('hidden')
   findCurrentCustomer()
 }
-
 function findCurrentCustomer() {
   let loginInfo = usernameInput.value.split('r');
   return customers.find(customer => {
@@ -142,11 +129,9 @@ function findCurrentCustomer() {
     }
   })
 }
-
 function updateUserWelcome() {
   welcomeText.innerText = `WELCOME: ${currentCustomer.name}`
 }
-
 function validateUser(event) {
   event.preventDefault()
   let loginInfo = usernameInput.value.split('r');
@@ -157,17 +142,14 @@ function validateUser(event) {
     clearForm(usernameInput, passwordInput);
   }
 }
-
 function clearForm(usernameInput, passwordInput) {
   usernameInput.value = '';
   passwordInput.value = '';
 }
-
 function displayTotalCost() {
   currentCustomer.getAllBookings(bookings)
   totalCost.innerText = `$ ${currentCustomer.getTotalCost(rooms)}`
 }
-
 function displayPastBookings(bookings) {
   pastStaysSection.classList.remove('hidden')
   currentCustomer.bookings.map(booking => {
@@ -183,12 +165,10 @@ function displayPastBookings(bookings) {
   bookRoomSection.classList.add('hidden')
   upcomingStaysSection.classList.add('hidden')
 }
-
 function checkRoomsAvailable(event) {
   event.preventDefault()
   const dateSelected = dayjs(calendar.value).format('YYYY/MM/DD')
   hotel.findAvailableRooms(dateSelected)
-  console.log(hotel.availableRooms)
   availableRoomCards.classList.remove('hidden')
   availableRoomCards.innerHTML = ''
   if (hotel.availableRooms.length === 0) {
@@ -212,7 +192,6 @@ function checkRoomsAvailable(event) {
     calendarSection.classList.add('hidden')
   }
 }
-
 function findRoomsByType(event) {
   event.preventDefault()
   availableRoomCards.classList.add('hidden')
@@ -234,7 +213,6 @@ function findRoomsByType(event) {
    `
   })
 }
-
 function bookRoom(event) {
   if (event.target.classList.contains('book-now-button')) {
     const roomNumber = parseInt(event.target.closest('article').id)
@@ -250,14 +228,12 @@ function bookRoom(event) {
     displayBookRoomSection()
   }
 }
-
 function clearData() {
   customers = [];
   bookings = [];
   rooms = [];
   hotel = new Hotel(customers, rooms, bookings)
 }
-
 function loadDataAfterBooking() {
   fetchAllData()
     .then(function(data) {
@@ -266,7 +242,6 @@ function loadDataAfterBooking() {
       fillRooms(data[1])
     })
 }
-
 function loadDisplay() {
   fetchAllData()
     .then(function(data) {
@@ -281,7 +256,6 @@ function loadDisplay() {
       upcomingStaysSection.innerHTML = ''
       bookings.forEach(booking => {
         if((booking.date >= currentDate) && (booking.userID === currentCustomer.id)) {
-          console.log(booking)
           upcomingStaysSection.innerHTML += `
                   <article class="upcoming-stays-card">
                   <p>Date: ${booking.date}</p>
@@ -293,7 +267,6 @@ function loadDisplay() {
       })
     })
 }
-
 function displayUpcoming() {
   clearData()
   loadDisplay()
