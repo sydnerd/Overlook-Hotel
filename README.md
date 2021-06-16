@@ -42,7 +42,7 @@ This application was written by [Sydney Bear ](https://github.com/sydnerd), a Mo
 4. cd out of that directory and clone down this [repo](git@github.com:sydnerd/overlook-hotel.git)
 5. cd into the director and run `npm install`
 6. Run `npm start`
-7. go to `http://localhos:8080/` to view the webpage
+7. Go to `http://localhos:8080/` to view the webpage
 
 ## Technologies used
 
