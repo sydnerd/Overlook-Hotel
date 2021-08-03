@@ -5,21 +5,21 @@ const fetchAllData = () => {
 }
 
 const getCustomerData = () => {
-  return fetch("http://localhost:3001/api/v1/customers")
+  return fetch('https://overlook-hotel-api.herokuapp.com/api/v1/customers')
     .then(response => response.json())
     .catch(err => console.log("ERROR"))
 }
 
 
 const getRoomsData = () => {
-  return fetch("http://localhost:3001/api/v1/rooms")
+  return fetch('https://overlook-hotel-api.herokuapp.com/api/v1/rooms')
     .then(response => response.json())
     .catch(err => console.log("ERROR"))
 }
 
 
 const getBookingsData = () => {
-  return fetch("http://localhost:3001/api/v1/bookings")
+  return fetch('https://overlook-hotel-api.herokuapp.com/api/v1/bookings')
     .then(response => response.json())
     .catch(err => console.log("ERROR"))
 }
@@ -37,7 +37,7 @@ const postBooking = (booking) => {
     },
     body: JSON.stringify(initObj)
   }
-  return fetch('http://localhost:3001/api/v1/bookings', init)
+  return fetch('https://overlook-hotel-api.herokuapp.com/api/v1/bookings/', init)
     .then(response => checkForErr(response))
     .then(data => data)
     .catch(err => displayBookingError())
