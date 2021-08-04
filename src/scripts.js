@@ -13,7 +13,7 @@ import './images/img2.jpg'
 import './images/img3.jpg'
 import './images/img4.jpg'
 import './images/img5.jpg'
-import './images/img6.jpg'
+import img6 from './images/img6.jpg'
 import './images/img7.jpg'
 import './images/book-room.gif'
 import './images/check-by-date.gif'
@@ -157,7 +157,7 @@ function displayPastBookings(bookings) {
           <article class="past-stays-card">
           <p>Date: ${booking.date}</p>
           <p>Room number: ${booking.roomNumber}</p>
-          <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+          <img class="hotel-image" src=${img6} alt="Room image">
           </article>
         `
   })
