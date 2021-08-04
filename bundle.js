@@ -998,7 +998,7 @@ function displayPastBookings(bookings) {
           <article class="past-stays-card">
           <p>Date: ${booking.date}</p>
           <p>Room number: ${booking.roomNumber}</p>
-          <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+          <img class="hotel-image" src="./images/img6.jpg" alt="Room image">
           </article>
         `
   })
@@ -1025,7 +1025,7 @@ function checkRoomsAvailable(event) {
         <p class="detail-text">Bed size: ${room.bedSize}</p>
         <p class="detail-text">Number of beds: ${room.numBeds}</p>
         <p class="detail-text">Cost per night: $${room.costPerNight}</p>
-        <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+        <img class="hotel-image" src="./images/img6.jpg" alt="Room image">
         </article>
       `
     })
@@ -1049,7 +1049,7 @@ function findRoomsByType(event) {
      <p class="detail-text">Bed size: ${room.bedSize}</p>
      <p class="detail-text">Number of beds: ${room.numBeds}</p>
      <p class="detail-text">Cost per night: $${room.costPerNight}</p>
-     <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+     <img class="hotel-image" src="./images/img6.jpg" alt="Room image">
      </article>
    `
   })
@@ -1101,7 +1101,7 @@ function loadDisplay() {
                   <article class="upcoming-stays-card">
                   <p>Date: ${booking.date}</p>
                   <p>Room number: ${booking.roomNumber}</p>
-                  <img class="hotel-image" src="../images/img6.jpg" alt="Room image">
+                  <img class="hotel-image" src="./images/img6.jpg" alt="Room image">
                   </article>
                 `
         }
